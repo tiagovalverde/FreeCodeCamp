@@ -15,27 +15,34 @@ $(document).ready(function() {
       
       //check if is digit
       if(!isNaN(input)){
-        console.log("digit");
-        //conc digit in result
-        $('.result > p').text(result += input);
+        concResult(input);
+        concHistory(input);
+
         //conc digit in history 
       }else if(input === "."){
         console.log("dot");
         //check if dot already in result
+         checkDotExists();
           //yes does nothing & exit
-          //no adds result and history & exit       
+          //no adds result and history & exit     
+
+
       }else if(input === "/" || input === "x" || input === "+" || input === "-"){
         console.log("artithmetic sign");
         //set result to the sign only
         //add sign to history
+
+
       }else if(input === "="){
         console.log("equal sign");
         //execute calculation
         //show result in result
         //show result after history
+
+
       }else if(input === "ac"){ 
         console.log("clear all");
-        //full reset
+        reset_all();
         
       }else if(input === "ce"){ 
         console.log("celar input");
@@ -47,15 +54,49 @@ $(document).ready(function() {
       
       result = "0";
       history = "LIMIT REACHED";
-      $('.result > p').text(result);
-      $('.full-operation > p').text(history);
+      setResult(result);
+      setHistory(history);
     }
      
       
   });
-  
-  function addDigit(digit){
-    
+
+  function checkDotExists(){
+    //looks for dot in result
+    if(result.indexOf(".") < 0){
+      result += input;
+      setResult(result);
+    }
+  }
+
+  function concHistory(newInput){
+    history += newInput;
+    setHistory(history);
+
+
+  }
+
+  function concResult(newInput){
+    result += newInput;
+    setResult(result);
   }
   
+  function reset_all(){
+    input = "";
+    result = "0";
+    history = "0";
+    setResult(result);
+    setHistory(history);
+  }
+
+
+  function  setResult(newResult){
+    $('.result > p').text(newResult);
+  }
+
+  function setHistory(newHistory){
+    $('.history > p').text(newHistory);
+  }
+
+
 });
