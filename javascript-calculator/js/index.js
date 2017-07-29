@@ -1,21 +1,21 @@
 $(document).ready(function() {
   
-  var input = ""; //used everytime a button is pressed
-  var result = "0"; //used when pressed equals
-  var history = "0"; //historic of entire operation
-  var answer = "";
-  var MAX_LENGTH = 9; //max digits allowed in screen
-  var MAX_LENGTH_HISTORY = 18;
+  var input = ""; //holds value of the button pressed
+  var result = "0"; //field where the input is printed out
+  var history = "0"; //field showing the chain of arithmetic operation
+  var answer = ""; //holds answer of the arithmetic operation when "=" pressed
+  var MAX_LENGTH = 9; //max digits allowed in input screen
+  var MAX_LENGTH_HISTORY = 18; //max digits allowed in history screen
   
-  //click event adding chars to string
+  //click event adding chars to input field
   $('button').click(function(){
     //value of button pressed
     input = $(this).attr("value");
-    //console.log(result.length < MAX_LENGTH);
+    
     //check if max reached
     if(result.length <= MAX_LENGTH){
       
-      //check if is digit
+      //digit
       if(!isNaN(input)){
 
           if(answer === ""){
@@ -27,12 +27,12 @@ $(document).ready(function() {
               setHistory(curr_input);
           }
           
-      //check if is dot
+      //dot
       }else if(input === "."){
-        //check if dot already in result
+        //is dot already in result?
          checkDotExists();
 
-
+      //sign
       }else if(input === "/" || input === "*" || input === "+" || input === "-"){
 
         if(checkZero()){ //avoids sign to be the first input in chain
@@ -40,56 +40,42 @@ $(document).ready(function() {
         }
 
         if(answer===""){
-            // check is sign already in result
+            // check if sign already in result
             if(!checkSign()){
-                      //set result to the sign only
-            //add sign to history
               concHistory(input);
               setResult(input);
-            }else if(checkSignHistory()){
-              //setResult(input);
             }
+        }else if (!isNaN(answer)){//
+            setHistory(answer + input);
+            setResult(input);
+            answer = "";
+        }
 
-          }else if (!isNaN(answer)){//
-              setHistory(answer + input);
-              setResult(input);
-              answer = "";
-          }
-
-
-
-        
-        
-
+      //equal sign
       }else if(input === "="){
           
-            //console.log(history);
             try{
-              answer = eval(history);
-              //console.log(answer);
-              answer = Math.round(answer * 100) / 100;
+              //answer = eval(history);
+              answer = Math.round(eval(history) * 100) / 100;
 
+              //check if answer exceeds the screen limits
               if(answer.toString().length > MAX_LENGTH || 
                 (history + "=" + answer).length >  MAX_LENGTH_HISTORY  ){
-                  //reset limit
                   limitReached();
-                  console.log("AAAAA");
                   return;
               }
-
               setResult(answer +"");
               concHistory("=" + answer);
-              //console.log("ANS: " + answer);
+
             }catch(err){
               console.log(err.message + ": " + "Incomplete arithmetic operation.");
             }
         
-        
-        //execute calculation
-        //show result in result
-        //show result after history
+      //ac - reset all
       }else if(input === "ac"){       
         reset_all();
+
+      //ce - reset last input
       }else if(input === "ce"){ 
         
         //result reset only, save history
@@ -106,8 +92,7 @@ $(document).ready(function() {
     }else{
       limitReached();
     }
-     
-      
+          
   });
 
 
