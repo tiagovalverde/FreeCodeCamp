@@ -12,12 +12,14 @@ $(document).ready(function() {
     //value of button pressed
     input = $(this).attr("value");
     
+    checkHistory(); //check if limit reached prev step
+
     //check if max reached
     if(result.length <= MAX_LENGTH){
       
       //digit
       if(!isNaN(input)){
-
+          console.log("ans: " + answer);
           if(answer === ""){
               isDigit(input);  
           }else if(!isNaN(answer)){
@@ -35,7 +37,7 @@ $(document).ready(function() {
       //sign
       }else if(input === "/" || input === "*" || input === "+" || input === "-"){
 
-        if(checkZero()){ //avoids sign to be the first input in chain
+        if(checkZeroResult() && history === "0"){ //avoids sign to be the first input in chain
           return;
         }
 
@@ -78,15 +80,19 @@ $(document).ready(function() {
       //ce - reset last input
       }else if(input === "ce"){ 
         
-        //result reset only, save history
-        if(history.length - result.length !== 0){
-          history = history.substring(0, history.length - result.length);
+        if(answer !== ""){
+          reset_all();
         }else{
-          history = "0";
-        }
+            
+             if(history.length - result.length !== 0){
+                history = history.substring(0, history.length - result.length);
+             }else{
+                history = "0";
+             }
         
         setHistory(history);
         setResult("0");
+        }
       }
     
     }else{
@@ -110,10 +116,15 @@ $(document).ready(function() {
 
   //process if digit is clicked
   function isDigit(newDigit){
-      if(checkZero()){
-        //set
+      if(checkZeroResult()){
         setResult(newDigit);
-        setHistory(newDigit);
+
+        if(history !== "0"){
+          concHistory(newDigit);
+        }else{
+          setHistory(newDigit);
+        }
+        
       }else if(checkSign()){
          setResult(newDigit);
          concHistory(newDigit);
@@ -135,9 +146,16 @@ $(document).ready(function() {
   }
 
   //check if result field only contains "0"
-  function checkZero(){
+  function checkZeroResult(){
     return result.length === 1 && result.charAt(0) === "0";
   }
+
+  function checkHistory(){
+    if(history === "LIMIT REACHED"){
+      setHistory("0");
+    }
+  }
+
 
   //check if dot was already inserted
   function checkDotExists(){
