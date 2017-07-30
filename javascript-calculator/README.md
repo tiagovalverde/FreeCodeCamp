@@ -1,6 +1,6 @@
 # JavaScript Calculator
 
-A FreeCodeCamp project part of the front-end certificate. Calculator created using CSS, HTML and JavaScript.
+A [FreeCodeCamp](https://www.freecodecamp.org/) project part of the front-end certificate. Calculator created using CSS, HTML and JavaScript.
 
 ## User Stories
 
@@ -10,8 +10,8 @@ A FreeCodeCamp project part of the front-end certificate. Calculator created usi
 
 ### Demo
 
-Currently under development
+Available on [Codepen](https://codepen.io/tiagovalverde/full/WENWPa).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
