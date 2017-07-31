@@ -5,7 +5,7 @@ $(document).ready(function() {
   var history = "0"; //field showing the chain of arithmetic operation
   var answer = ""; //holds answer of the arithmetic operation when "=" pressed
   var MAX_LENGTH = 9; //max digits allowed in input screen
-  var MAX_LENGTH_HISTORY = 18; //max digits allowed in history screen
+  var MAX_LENGTH_HISTORY = 21; //max digits allowed in history screen
   
   //click event adding chars to input field
   $('button').click(function(){
@@ -19,7 +19,7 @@ $(document).ready(function() {
       
       //digit
       if(!isNaN(input)){
-          console.log("ans: " + answer);
+          
           if(answer === ""){
               isDigit(input);  
           }else if(!isNaN(answer)){
@@ -38,12 +38,24 @@ $(document).ready(function() {
       }else if(input === "/" || input === "*" || input === "+" || input === "-"){
 
         if(checkZeroResult() && history === "0"){ //avoids sign to be the first input in chain
+          
+          if(input === "-" || input === "+"){
+              setResult(input);
+              setHistory(input);
+          }else if(input === "/"){
+              setResult(input);
+              concHistory(input);
+          }
+
           return;
         }
 
         if(answer===""){
             // check if sign already in result
             if(!checkSign()){
+              concHistory(input);
+              setResult(input);
+            }else if(input === "-" && (history.slice(-1) === "/" || history.slice(-1) === "*" )){
               concHistory(input);
               setResult(input);
             }
@@ -63,6 +75,7 @@ $(document).ready(function() {
               //check if answer exceeds the screen limits
               if(answer.toString().length > MAX_LENGTH || 
                 (history + "=" + answer).length >  MAX_LENGTH_HISTORY  ){
+              
                   limitReached();
                   return;
               }
@@ -95,7 +108,7 @@ $(document).ready(function() {
         }
       }
     
-    }else{
+    }else{;
       limitReached();
     }
           
