@@ -1,0 +1,72 @@
+html{  }
+
+#wrapper{
+  
+  width:100%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#outer {  
+    margin: 0 auto;
+    transition: margin 700ms;
+}
+
+#inner{
+  margin: 10px 20px 10px 20px;
+}
+
+.header{
+  margin-bottom: 20px;
+}
+
+.buttons{
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.tv-btn{
+  width: 32%;
+  
+  
+}
+
+.tv-inline{
+  width: 48%;
+}
+
+.setup{
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.setup p {
+  margin-bottom: 0px;
+}
+
+
+/* Large Devices, Wide Screens */
+	@media only screen and (max-width : 2052px){
+    /*
+    #inner{ margin: 10px 120px 10px 120px; }
+    */
+  }
+
+	/* Medium Devices, Desktops */
+	@media only screen and (max-width : 992px){
+    /*
+    #inner{ margin: 10px 70px 10px 70px;}
+    */
+  }
+
+@media only screen and (max-width : 768px){
+  /*
+  #inner{ margin: 10px 20px 10px 20px; }
+  */
+}
+
+@media only screen and (max-width : 320px){
+
+  
+ }
