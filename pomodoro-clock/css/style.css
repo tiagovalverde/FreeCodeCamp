@@ -29,7 +29,19 @@ html{  }
 .tv-btn{
   width: 32%;
   
-  
+}
+
+.btn-circle{
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 4px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  outline:0 !important ;
 }
 
 .tv-inline{
