@@ -4,7 +4,7 @@ $(document).ready(function() {
   var result = "0"; //field where the input is printed out
   var history = "0"; //field showing the chain of arithmetic operation
   var answer = ""; //holds answer of the arithmetic operation when "=" pressed
-  var MAX_LENGTH = 9; //max digits allowed in input screen
+  var MAX_LENGTH = 10; //max digits allowed in input screen
   var MAX_LENGTH_HISTORY = 21; //max digits allowed in history screen
   
   //click event adding chars to input field
@@ -14,7 +14,6 @@ $(document).ready(function() {
     
     checkHistory(); //check if limit reached prev step
 
-    //check if max reached
     if(result.length <= MAX_LENGTH){
       
       //digit
