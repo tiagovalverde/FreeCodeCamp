@@ -23,45 +23,30 @@
           
         </div>
         <div class="buttons">
-           <button type="button" class="btn btn-success tv-btn"><i class="fa fa-play" aria-hidden="true"></i></button>
-           <button type="button" class="btn btn-warning tv-btn"><i class="fa fa-pause" aria-hidden="true"></i></button>
-           <button type="button" class="btn btn-danger tv-btn"><i class="fa fa-stop" aria-hidden="true"></i>
+           <button id="btn-play" type="button" class="btn btn-success tv-btn"><i class="fa fa-play" aria-hidden="true"></i></button>
+           <button id="btn-pause" type="button" class="btn btn-warning tv-btn"><i class="fa fa-pause" aria-hidden="true"></i></button>
+           <button id="btn-reset" type="button" class="btn btn-danger tv-btn"><i class="fa fa-stop" aria-hidden="true"></i>
 </button>
 
         </div>
         <div class="setup">
-          <ul class="list-inline">
-            <li  class="list-inline-item tv-inline">
-              <p id="" class="">Session</p>
-              <div id="" class="">
-                  <button class="btn-circle ">+</button>
-                  <span id="sessionTime">5</span><span>min</span>
-                  <button class="btn-circle">-</button>
-              </div>
-            </li>
-            <li class="list-inline-item tv-inline">
-              <p id="" class="">Break</p>
-               <div id="" class="">
-               <button class="btn-circle splus">+</button>
-               <span id="breakTime">5</span><span>min</span>
-               <button class="btn-circle">-</button>
-               </div> 
-            </li>
-          </ul>
+          <div class="range-slider">
+                <span class="range-slider__session">Session </span>
+                <input class="range-slider__range" type="range" value="25" min="1" max="60">
+                <span class="range-slider__value">0</span>
+          </div>
+          <div class="range-slider">
+                <span class="range-slider__break">Break </span>
+                <input class="range-slider__range" type="range" value="5" min="1" max="15">
+                <span class="range-slider__value">0</span>
+          </div>
         </div>
         <div class="timer">
-
+          
         </div>
 
 
-        <div class="range-slider">
-          <input class="range-slider__range" type="range" value="100" min="0" max="500">
-          <span class="range-slider__value">0</span>
-        </div>
-        <div class="range-slider">
-          <input class="range-slider__range" type="range" value="100" min="0" max="500">
-          <span class="range-slider__value">0</span>
-        </div>
+        
       </div>
   </div>
 </div>

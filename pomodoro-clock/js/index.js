@@ -1,10 +1,5 @@
 $(document).ready(function() {
   
- $('.splus').click(function(){
- 	console.log("splus");
-
-
- });
 
  var rangeSlider = function(){
   var slider = $('.range-slider'),
@@ -25,6 +20,12 @@ $(document).ready(function() {
 };
 
 rangeSlider();
+
+ $('#btn-play').click(function(){
+ 	console.log($('.range-slider__value').first().text());
+
+ });
+
 
 
 
