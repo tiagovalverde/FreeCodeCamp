@@ -32,17 +32,21 @@
         <div class="setup">
           <div class="range-slider">
                 <span class="range-slider__session">Session </span>
-                <input class="range-slider__range" type="range" value="25" min="1" max="60">
-                <span class="range-slider__value">0</span>
+                <input id="sliderSession" class="range-slider__range" type="range" value="25" min="1" max="60">
+                <span class="range-slider__value"></span>
           </div>
           <div class="range-slider">
                 <span class="range-slider__break">Break </span>
-                <input class="range-slider__range" type="range" value="5" min="1" max="15">
-                <span class="range-slider__value">0</span>
+                <input id="sliderBreak" class="range-slider__range" type="range" value="5" min="1" max="15">
+                <span class="range-slider__value"></span>
           </div>
         </div>
-        <div class="timer">
-          
+        <div id="countdown_display" class="timer">
+          <h3>Session</h3>
+          <h1 ><span class="minutes">25</span><span> :</span>
+           <span class="seconds">00</span></h1>
+
+           
         </div>
 
 
@@ -52,10 +56,9 @@
 </div>
 
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
- 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-
+<script src="js/easytimer.js"></script>
  <script src="js/index.js"></script>
 </body>
 </html>
