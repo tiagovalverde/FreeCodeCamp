@@ -165,3 +165,33 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: -1px;
 }
+
+#circular{
+    position: relative;
+    
+}
+
+#circular #countdown_display {
+    text-align:center;
+    position: absolute;
+    line-height: 125px;
+    width: 100%;
+
+}
+
+svg {
+   -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+    border: 1px solid #000;
+}
+
+
+.circle_animation {
+  stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
+  stroke-dashoffset: 440;
+  transition: all 1s linear;
+
+}
+

@@ -85,16 +85,21 @@ var timer = new Timer();
 $('.buttons #btn-play').click(function () {
 	var slider_timeSeconds = parseInt($('.range-slider__value').first().text()) * 60 ; 
     timer.start({precision: 'seconds',countdown: true, startValues: {seconds: slider_timeSeconds}});
+    startCircularCountdown(slider_timeSeconds);
     disableSlider();
 });
 
 $('.buttons #btn-pause').click(function () {
     timer.pause();
+    i = time;
 });
 $('.buttons #btn-reset').click(function () {
     timer.stop();
     updateCounterPerSecond( $('.range-slider__value').first().text(), '00');
     enableSlider();
+    //pausedTime = time;
+   // var flag_btnPressed = 'pause';
+    //i = time; //reset circular timer
 });
 
 
@@ -121,6 +126,44 @@ function updateCounterPerSecond( min, sec){
      $('#countdown_display .seconds').html(sec);
 }
 
+
+//circle animation
+function resetCircularCountdown(){
+	//$('.circle_animation').css('stroke-dashoffset', 440);
+}
+
+var flag_btnPressed = '';
+var pausedTime;
+var time;
+var i;
+function startCircularCountdown(newTime){
+	 time = newTime;
+	var initialOffset = '440';
+	i = 1;
+
+	/* Need initial run as interval hasn't yet occured... */
+	$('.circle_animation').css('stroke-dashoffset', initialOffset-(1*(initialOffset/time)));
+
+	var interval = setInterval(function() {
+			$('h2').text(i);
+			if (i == time) {  
+
+			    if(flag_btnPressed === '' || flag_btnPressed === 'reset'){
+			    	clearInterval(interval);
+		            $('.circle_animation').css('stroke-dashoffset', initialOffset);
+					return;
+			    }else{
+			    	clearInterval(interval);
+		            $('.circle_animation').css('stroke-dashoffset', initialOffset-((i+1)*(initialOffset/pausedTime)));
+					return;
+			    }
+	            
+	    }
+	    $('.circle_animation').css('stroke-dashoffset', initialOffset-((i+1)*(initialOffset/time)));
+	    i++;  
+	}, 1000);
+
+}
 
 
 });
