@@ -1,4 +1,4 @@
-html{  }
+
 
 #wrapper{
   
@@ -192,6 +192,12 @@ svg {
   stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
   stroke-dashoffset: 440;
   transition: all 1s linear;
-
+ -webkit-transition-duration: 1s;
 }
 
+
+#containerT {
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+}

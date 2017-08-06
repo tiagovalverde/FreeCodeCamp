@@ -65,15 +65,21 @@ $(".seconds").on('DOMSubtreeModified', function () {
     		//starts the break countdown
     		timer.stop();
     		var slider_timeSeconds = parseInt($('.range-slider__value').eq(1).text()) * 60 ; 
-            timer.start({precision: 'seconds',countdown: true, startValues: {seconds: slider_timeSeconds}});
+            timer.start({precision: 'seconds',countdown: true, startValues: {seconds: 10}});
             $('#countdown_title').html('Break');
+            test();
+            startCircularCountdown(10);
 
     	}else{
     		//starts the Session countdown again
     		timer.stop();
     		var slider_timeSeconds = parseInt($('.range-slider__value').eq(0).text()) * 60 ; 
-            timer.start({precision: 'seconds',countdown: true, startValues: {seconds: slider_timeSeconds}});
+
+$('.circle_animation').css('stroke-dashoffset', initialOffset);
+test();
+            timer.start({precision: 'seconds',countdown: true, startValues: {seconds: 10}});
             $('#countdown_title').html('Session');
+            startCircularCountdown(10);
     	}
     }
 });
@@ -84,22 +90,34 @@ var timer = new Timer();
 
 $('.buttons #btn-play').click(function () {
 	var slider_timeSeconds = parseInt($('.range-slider__value').first().text()) * 60 ; 
-    timer.start({precision: 'seconds',countdown: true, startValues: {seconds: slider_timeSeconds}});
-    startCircularCountdown(slider_timeSeconds);
+    timer.start({precision: 'seconds',countdown: true, startValues: {seconds: 10}});
+    startCircularCountdown(10);
     disableSlider();
+     flag_btnPressed = '';
+
+     test();
+
+
+
+
+
+
 });
 
 $('.buttons #btn-pause').click(function () {
     timer.pause();
+    pausedTime = time;
+    flag_btnPressed = 'pause';
     i = time;
+    console.log("pause pressed");
 });
+
 $('.buttons #btn-reset').click(function () {
     timer.stop();
     updateCounterPerSecond( $('.range-slider__value').first().text(), '00');
     enableSlider();
-    //pausedTime = time;
-   // var flag_btnPressed = 'pause';
-    //i = time; //reset circular timer
+    flag_btnPressed = 'reset';
+    i = time; //reset circular timer
 });
 
 
@@ -110,6 +128,20 @@ timer.addEventListener('secondsUpdated', function (e) {
 timer.addEventListener('started', function (e) {
 	 updateCounterPerSecond( timer.getTimeValues().minutes, timer.getTimeValues().seconds);
 });
+
+
+function test(){
+	var bar = new ProgressBar.Circle(containerT, {
+  strokeWidth: 6,
+  easing: 'easeInOut',
+  duration: 10000,
+  color: '#FFEA82',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: null
+});
+bar.animate(1.0);  // Number from 0.0 to 1.0
+}
 
 function disableSlider(){
 	document.getElementById("sliderBreak").disabled = true;
@@ -136,10 +168,14 @@ var flag_btnPressed = '';
 var pausedTime;
 var time;
 var i;
+var initialOffset = '440';
+
 function startCircularCountdown(newTime){
 	 time = newTime;
-	var initialOffset = '440';
+
 	i = 1;
+
+
 
 	/* Need initial run as interval hasn't yet occured... */
 	$('.circle_animation').css('stroke-dashoffset', initialOffset-(1*(initialOffset/time)));
@@ -150,11 +186,13 @@ function startCircularCountdown(newTime){
 
 			    if(flag_btnPressed === '' || flag_btnPressed === 'reset'){
 			    	clearInterval(interval);
+			    	console.log("1111");
 		            $('.circle_animation').css('stroke-dashoffset', initialOffset);
 					return;
-			    }else{
+			    }else if(flag_btnPressed === 'pause'){
+			    	console.log("AAAA");
 			    	clearInterval(interval);
-		            $('.circle_animation').css('stroke-dashoffset', initialOffset-((i+1)*(initialOffset/pausedTime)));
+		            //$('.circle_animation').css('stroke-dashoffset', initialOffset-((i+1)*(initialOffset/pausedTime)));
 					return;
 			    }
 	            
@@ -166,5 +204,18 @@ function startCircularCountdown(newTime){
 }
 
 
-});
 
+
+
+// progressbar.js@1.0.0 version is used
+// Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
+
+
+
+
+
+
+
+
+
+});
