@@ -1,7 +1,4 @@
-
-
 #wrapper{
-  
   width:100%; 
   display: flex;
   align-items: center;
@@ -31,72 +28,24 @@
   
 }
 
-.btn-circle{
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 4px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 50%;
-  background-color: #000;
-  color: #fff;
-  outline:0 !important ;
-}
-
-.tv-inline{
-  width: 48%;
-}
-
 .setup{
   margin-bottom: 20px;
   text-align: center;
 }
 
-.setup p {
-  margin-bottom: 0px;
-}
-
 .timer{
-  padding-top: 50px;
-  text-align: center;
+  padding: auto;
+  top: 30%;
+  bottom: 20%;
+  left: 15%;
+  right: 15%;
+  text-align: center;position: absolute;
 }
 
 
-/* Large Devices, Wide Screens */
-	@media only screen and (max-width : 2052px){
-    /*
-    #inner{ margin: 10px 120px 10px 120px; }
-    */
-  }
-
-	/* Medium Devices, Desktops */
-	@media only screen and (max-width : 992px){
-    /*
-    #inner{ margin: 10px 70px 10px 70px;}
-    */
-  }
-
-@media only screen and (max-width : 768px){
-  /*
-  #inner{ margin: 10px 20px 10px 20px; }
-  */
-}
-
-@media only screen and (max-width : 320px){
-
-  
- }
-
- /* Sliders Effects */
-/**
-   Coded by /u/j0be in scss.
-   See scss source here -> https://codepen.io/j0be/pen/MKRVyN
+/* Sliders Effects */
 */
-
 *, *:before, *:after { box-sizing: border-box; } 
-
-
 
 @media (min-width: 600px) { body { padding: 60px; } } 
 
@@ -122,36 +71,33 @@
 } 
 
 
-  ::-moz-range-track { background: #d7dcdf; border: 0; } input::-moz-focus-inner, input::-moz-focus-outer { border: 0; } 
+::-moz-range-track { 
+  background: #d7dcdf; 
+  border: 0; 
+}
+
+input::-moz-focus-inner, input::-moz-focus-outer { border: 0; } 
 
 .range-slider__session{
    display: inline-block; 
    position: relative;
    width: 58px !important;
-
-
    color: #fff; 
    line-height: 20px; 
-
    border-radius: 3px; 
    background: #2c3e50; 
    padding: 5px 3px;
-   
 }
 
 .range-slider__break{
    display: inline-block; 
    position: relative;
    width: 58px !important;
-
-
    color: #fff; 
    line-height: 20px; 
-
    border-radius: 3px; 
    background: #2c3e50; 
    padding: 5px 10px;
-   
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -166,38 +112,35 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -1px;
 }
 
-#circular{
-    position: relative;
-    
-}
-
-#circular #countdown_display {
-    text-align:center;
-    position: absolute;
-    line-height: 125px;
-    width: 100%;
-
-}
-
-svg {
-   -webkit-transform: rotate(-90deg);
-    transform: rotate(-90deg);
-    width: 100%;
-    height: 100%;
-    border: 1px solid #000;
-}
-
-
-.circle_animation {
-  stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
-  stroke-dashoffset: 440;
-  transition: all 1s linear;
- -webkit-transition-duration: 1s;
-}
-
-
 #containerT {
-  margin: 20px;
-  width: 200px;
-  height: 200px;
+  position: relative;
+  width: 100%;
+  height: auto;
 }
+
+
+
+/* Large Devices, Wide Screens */
+  @media only screen and (max-width : 2052px){
+    /*
+    #inner{ margin: 10px 120px 10px 120px; }
+    */
+  }
+
+  /* Medium Devices, Desktops */
+  @media only screen and (max-width : 992px){
+    /*
+    #inner{ margin: 10px 70px 10px 70px;}
+    */
+  }
+
+@media only screen and (max-width : 768px){
+  /*
+  #inner{ margin: 10px 20px 10px 20px; }
+  */
+}
+
+@media only screen and (max-width : 320px){
+
+  
+ }

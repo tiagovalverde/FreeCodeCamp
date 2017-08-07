@@ -3,73 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <title>Pomodoro Clock</title>
-  
-  
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
 <link rel="stylesheet" href="css/style.css">
-  
 </head>
-
 <body>
-
-<div id="wrapper">
-  <div id="outer">
+  
+  <div id="wrapper">
+    <div id="outer">
+      
       <div id="inner">
+        
         <div class="header">
-          <h1>Pomodoro Clock
-</h1>
-          
-        </div>
-        <div class="buttons">
-           <button id="btn-play" type="button" class="btn btn-success tv-btn"><i class="fa fa-play" aria-hidden="true"></i></button>
-           <button id="btn-pause" type="button" class="btn btn-warning tv-btn"><i class="fa fa-pause" aria-hidden="true"></i></button>
-           <button id="btn-reset" type="button" class="btn btn-danger tv-btn"><i class="fa fa-stop" aria-hidden="true"></i>
-</button>
-
-        </div>
-        <div class="setup">
-          <div class="range-slider">
-                <span class="range-slider__session">Session </span>
-                <input id="sliderSession" class="range-slider__range" type="range" value="25" min="1" max="60">
-                <span class="range-slider__value"></span>
-          </div>
-          <div class="range-slider">
-                <span class="range-slider__break">Break </span>
-                <input id="sliderBreak" class="range-slider__range" type="range" value="5" min="1" max="15">
-                <span class="range-slider__value"></span>
-          </div>
+          <h1>Pomodoro Clock</h1>  
         </div>
         
-        <div id="circular" class="timer">
-          <div id="countdown_display" class="timer">
-          <h3 id="countdown_title">Session</h3>
-          <h1 ><span class="minutes">25</span><span> :</span>
-           <span class="seconds">00</span></h1>
-
-           
+        <div class="setup">
+          
+          <div class="range-slider">
+            <span class="range-slider__session">Session </span>
+            <input id="sliderSession" class="range-slider__range" type="range" value="25" min="1" max="60">
+            <span class="range-slider__value"></span>
           </div>
-            <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
-             <g>
-              <title>Layer 1</title>
-              <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width="10" stroke="#6fdb6f" fill="none"/>
-             </g>
-            </svg>
+          
+          <div class="range-slider">
+            <span class="range-slider__break">Break </span>
+            <input id="sliderBreak" class="range-slider__range" type="range" value="5" min="1" max="15">
+            <span class="range-slider__value"></span>
+          </div>
+
         </div>
 
-        <div id="containerT"></div>
+      </div>
 
+      <div id="containerT">
+          
+        <svg id="staticSVG" viewBox="0 0 100 100">
+          <path d="M 50,50 m 0,-47 a 47,47 0 1 1 0,94 a 47,47 0 1 1 0,-94" stroke="#eee" stroke-width="1" fill-opacity="0"></path>
+          <path d="M 50,50 m 0,-47 a 47,47 0 1 1 0,94 a 47,47 0 1 1 0,-94" stroke="#FFEA82" stroke-width="6" fill-opacity="0" style="stroke-dasharray: 0, 295.416;"></path>
+        </svg>
 
+        <div id="countdown_display" class="timer">
+          <h3 id="countdown_title">Session</h3>
+          <h1 ><span class="minutes">25</span><span> :</span>
+          <span class="seconds">00</span></h1>
+          <button id="btn-play" type="button" class="btn btn-success tv-btn"><i class="fa fa-play" aria-hidden="true"></i></button>
+          <button id="btn-reset" type="button" class="btn btn-danger tv-btn"><i class="fa fa-stop" aria-hidden="true"></i>
+        </div>
 
+    </div>
   </div>
 </div>
 
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-<script src="js/easytimer.js"></script>
-<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js
-"></script>
- <script src="js/index.js"></script>
-</body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+    <script src="js/easytimer.js"></script>
+    <script src="js/progressbar.js"></script>
+     <script src="js/index.js"></script>
+  </body>
 </html>
