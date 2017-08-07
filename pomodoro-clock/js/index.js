@@ -80,6 +80,7 @@ rangeSlider();
 	    enableSlider();
 	    bar.destroy(); 
 	    $('#staticSVG').show();
+	    $('#countdown_title').html('Session');
 
 	});
 
@@ -100,7 +101,7 @@ rangeSlider();
 			strokeWidth: 6,
 			easing: 'linear',
 			duration: miliseconds,
-			color: '#FFEA82',
+			color: '#0ac624',
 			trailColor: '#eee',
 			trailWidth: 4,
 			svgStyle: null
