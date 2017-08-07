@@ -1,6 +1,6 @@
 $(document).ready(function() {
   
-//sliders effects
+	//sliders effects
  	var rangeSlider = function(){
 	var slider = $('.range-slider'),
     	range = $('.range-slider__range'),
@@ -21,12 +21,13 @@ $(document).ready(function() {
 		    }
 	    });
 	 });
-};
 
-rangeSlider();
+    };
+    //active slider
+    rangeSlider();
 
 
-	//Verify if countdown finished
+	//verify if countdown finished
 	$(".seconds").on('DOMSubtreeModified', function () {
 	    
 	    if($(this).html() === '0' && $('.minutes').html() === '0'){
@@ -39,7 +40,7 @@ rangeSlider();
 	            playNotification();
 	            $('#countdown_title').html('Break');
 	            bar.destroy();
-	            test(slider_timeSeconds * 1000);
+	            startProgressBar(slider_timeSeconds * 1000);
 	            $('svg').eq(1).prependTo('#containerT');
 
 	    	}else{
@@ -50,7 +51,7 @@ rangeSlider();
 	            playNotification();
 	            $('#countdown_title').html('Session');
 	            bar.destroy();
-	            test(slider_timeSeconds * 1000);
+	            startProgressBar(slider_timeSeconds * 1000);
 	            $('svg').eq(1).prependTo('#containerT');
 	    	}
 	    }
@@ -59,6 +60,8 @@ rangeSlider();
 
 	//easytimer call
 	var timer = new Timer();
+
+	//play button
 	$('#btn-play').click(function () {
 		
 		playNotification();
@@ -68,12 +71,11 @@ rangeSlider();
 	    disableSlider();
 	    
 	    $('#staticSVG').hide();
-	    test(slider_timeSeconds * 1000); //miliseconds
+	    startProgressBar(slider_timeSeconds * 1000); //miliseconds
 	    $('svg').eq(1).prependTo('#containerT'); //move svg to be the first child element
 	});
 
-
-
+	//reset button
 	$('#btn-reset').click(function () {
 	    timer.stop();
 	    updateCounterPerSecond( $('.range-slider__value').first().text(), '00');
@@ -84,7 +86,7 @@ rangeSlider();
 
 	});
 
-
+	//easy timer events
 	timer.addEventListener('secondsUpdated', function (e) {
 		updateCounterPerSecond( timer.getTimeValues().minutes, timer.getTimeValues().seconds);
 	});
@@ -94,9 +96,9 @@ rangeSlider();
 	});
 
 
-
+	//progress bar
 	var bar;
-	function test(miliseconds){
+	function startProgressBar(miliseconds){
 	    bar = new ProgressBar.Circle(containerT, {
 			strokeWidth: 6,
 			easing: 'linear',
@@ -117,6 +119,7 @@ rangeSlider();
 		loop();
 	}
 
+	//lock slider when time is running
 	function disableSlider(){
 		document.getElementById("sliderBreak").disabled = true;
 	    document.getElementById("sliderSession").disabled = true;
@@ -132,6 +135,7 @@ rangeSlider();
 	     $('#countdown_display .seconds').html(sec);
 	}
 
+	//sound notification on starting a new countdown
 	function playNotification(){
 		var audio = new Audio('sounds/stuffed-and-dropped.mp3');
 		audio.play();
