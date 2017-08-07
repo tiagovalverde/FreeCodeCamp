@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 	    range.on('input', function(){
 	    	$(this).next(value).html(this.value);
-		    //console.log($(this).attr('id'));
+		    
 		    if($(this).attr('id') === 'sliderSession'){
 		      	$('#countdown_display .minutes').html(this.value);
 		    }
@@ -36,7 +36,7 @@ rangeSlider();
 	    		timer.stop();
 	    		var slider_timeSeconds = parseInt($('.range-slider__value').eq(1).text()) * 60 ; 
 	            timer.start({precision: 'seconds',countdown: true, startValues: {seconds: slider_timeSeconds}});
-	            
+	            playNotification();
 	            $('#countdown_title').html('Break');
 	            bar.destroy();
 	            test(slider_timeSeconds * 1000);
@@ -47,7 +47,7 @@ rangeSlider();
 	    		timer.stop();
 	    		var slider_timeSeconds = parseInt($('.range-slider__value').eq(0).text()) * 60 ; 
 	            timer.start({precision: 'seconds',countdown: true, startValues: {seconds: slider_timeSeconds}});
-	            
+	            playNotification();
 	            $('#countdown_title').html('Session');
 	            bar.destroy();
 	            test(slider_timeSeconds * 1000);
@@ -60,6 +60,9 @@ rangeSlider();
 	//easytimer call
 	var timer = new Timer();
 	$('#btn-play').click(function () {
+		
+		playNotification();
+
 		var slider_timeSeconds = parseInt($('.range-slider__value').first().text()) * 60 ; 
 	    timer.start({precision: 'seconds',countdown: true, startValues: {seconds: slider_timeSeconds}});
 	    disableSlider();
@@ -99,7 +102,7 @@ rangeSlider();
 			duration: miliseconds,
 			color: '#FFEA82',
 			trailColor: '#eee',
-			trailWidth: 1,
+			trailWidth: 4,
 			svgStyle: null
 		});
 
@@ -126,6 +129,11 @@ rangeSlider();
 	function updateCounterPerSecond( min, sec){
 		 $('#countdown_display .minutes').html(min);
 	     $('#countdown_display .seconds').html(sec);
+	}
+
+	function playNotification(){
+		var audio = new Audio('sounds/stuffed-and-dropped.mp3');
+		audio.play();
 	}
 
 
