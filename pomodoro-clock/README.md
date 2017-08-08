@@ -10,12 +10,12 @@ A [FreeCodeCamp](https://www.freecodecamp.org/) project part of the front-end ce
 
 ### External Libraries
 
-* easytimer.js[https://github.com/albert-gonzalez/easytimer.js]
-* progressbar.js[https://github.com/kimmobrunfeldt/progressbar.js]
+* [easytimer.js](https://github.com/albert-gonzalez/easytimer.js)
+* [progressbar.js](https://github.com/kimmobrunfeldt/progressbar.js)
 
 ### Demo
 
-Available on CodePen[https://codepen.io/tiagovalverde/full/xLVpZL/]
+Available on [CodePen](https://codepen.io/tiagovalverde/full/xLVpZL/)
 
 ## License
 
