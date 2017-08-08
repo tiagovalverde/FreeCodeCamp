@@ -8,9 +8,14 @@ A [FreeCodeCamp](https://www.freecodecamp.org/) project part of the front-end ce
 * I can reset the clock for my next pomodoro.
 * I can customize the length of each pomodoro.
 
+### External Libraries
+
+* easytimer.js[https://github.com/albert-gonzalez/easytimer.js]
+* progressbar.js[https://github.com/kimmobrunfeldt/progressbar.js]
+
 ### Demo
 
-Available soon
+Available on CodePen[https://codepen.io/tiagovalverde/full/xLVpZL/]
 
 ## License
 
