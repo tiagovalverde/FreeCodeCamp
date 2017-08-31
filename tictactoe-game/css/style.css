@@ -3,24 +3,30 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Gloria Hallelujah', cursive !important;
 }
 
 html{
-
-
-
-   height:100%;
+  height:100%;
   background-image: url(https://image.ibb.co/kjevWa/information_427515.png);
   background-position: center center;
-			background-repeat:  no-repeat;
-			background-attachment: fixed;
-			background-size:  cover;
+	background-repeat:  no-repeat;
+	background-attachment: fixed;
+	background-size:  cover;
   font-family: 'Graduate', cursive;
 }
 
-.white-block{  
+.btn-group-lg>.btn, .btn-lg {
+    padding: .75rem 1.5rem;
+    font-size: 5.25rem;
+    border-radius: 50%;
+    margin: 30px 10px;
+
+}
+
+.white-block, .start-block{  
   max-width: 400px;
-  height: 400px;
+  height: 500px;
   background-color: inherit;
   position: absolute;
   top:0;
@@ -32,7 +38,34 @@ html{
   margin-right: auto;
   border-radius: 15px;
 
+}
 
+.white-block{
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+}
+
+.start-block{
+  text-align: center;
+  align-items:center;
+  padding: 50px 0 50px 0;
+
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+.m-fadeIn{
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+.m-fadeOut {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
 }
 
 
@@ -67,7 +100,7 @@ tr:nth-of-type(3) td {
   border-bottom-color: transparent;
 }
 
-.flex-grid {
+.flex-grid, h1 {
   display: flex;
  font-family: 'Gloria Hallelujah', cursive;
 }
