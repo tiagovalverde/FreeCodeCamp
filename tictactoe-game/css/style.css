@@ -70,18 +70,24 @@ html{
 
 
 table {
-  width: 100%;
-  border-collapse: collapse;
+  width: 400px;
+  height: 400px;
+
+  table-layout: fixed;
 }
 td {
+
   width: 33.333%;
+  height: 33.333%;
   border: 6px solid #222;
+   align-items:center;
+  text-align: center;
+  font-size: 50px;
+  overflow: hidden;
+  white-space: nowrap;
 }
-td::after {
-  content: '';
-  display: block;
-  margin-top: 100%;
-}
+
+
 td {
   border: 6px solid #222;
 }
@@ -124,3 +130,5 @@ tr:nth-of-type(3) td {
      cursor: pointer;
      
 }
+
+
