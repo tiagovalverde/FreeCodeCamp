@@ -1,10 +1,11 @@
 var game_prop = {
-    player: "",
-    player_record: 0,
+    plr: "",
+    plr_rcrd: 0,
     com: "",
-    com_record: 0,
-    currentPlayer: "",
-    moves: 1
+    com_rcrd: 0,
+    crrt_plr: "",
+    moves: 0,
+    board: [0,1,2,3,4,5,6,7,8]
  };
 
 
@@ -20,8 +21,8 @@ var game_prop = {
         document.querySelector(".white-block").classList.remove("m-fadeIn");
         
         //set up game properties
-        game_prop.player = com = "";
-        game_prop.player_record = game_prop.com_record = 0;
+        game_prop.plr = com = "";
+        game_prop.plr_rcrd = game_prop.com_rcrd = 0;
         console.log( 'game reset');
 	}
 
@@ -30,7 +31,6 @@ var game_prop = {
 
 	//starting game events
 	const startButtons = document.querySelectorAll('.btn-secondary');
-    console.log(startButtons);
 
 	startButtons.forEach(
 		key => addEventListener('click', selectPlayerChar, false)		
@@ -41,9 +41,11 @@ var game_prop = {
 		//define chars for players
 		if(element.target.getAttribute('id') === "start-btn"){
 			console.log("select char & start");
-			game_prop.player = element.target.getAttribute('data-player');
+
+			game_prop.plr = element.target.getAttribute('data-player');
             game_prop.com = element.target.getAttribute('data-com');
-            currentPlayer = game_prop.player; // switch each game (depending on number games realized)
+            game_prop.crrt_plr = game_prop.plr; // switch each game (depending on number games realized)
+            
             //hide starting block ^& show block
             document.querySelector(".start-block").className += ' m-fadeOut';
             document.querySelector(".white-block").className += ' m-fadeIn';
@@ -52,10 +54,76 @@ var game_prop = {
 
 
 	//fill Board
-	function icon(block_id){
+	function fillBlock(block_id){
 		
+        //fill block with current player char
+        document.getElementById(block_id).innerText = game_prop.crrt_plr;
+        game_prop.board[block_id] = game_prop.crrt_plr;
+        console.log(game_prop.board);
+
+        //every time a block is filled
+
+        //check state of the game
+        checkStateGame(game_prop.crrt_plr);
+
+        //change current player (to change char)
+        game_prop.crrt_plr === game_prop.plr ? game_prop.crrt_plr = game_prop.com : game_prop.crrt_plr = game_prop.plr;
+        
+        //increment number plays done
+        game_prop.moves++;
+
+        
+        //check if is com turn (apply here the minimax alghoritm)
+
+
+
+        //remove block click event
         document.getElementById(block_id).removeAttribute("onClick");
-        document.getElementById(block_id).innerText = game_prop.player;
+	}
+
+	function checkStateGame(currentPlayer){
+
+		var temp = currentPlayer + "WINSSS!";
+
+		if(game_prop.board[0] === currentPlayer){
+
+			if(game_prop.board[1] === currentPlayer && game_prop.board[2] === currentPlayer){
+				console.log(temp);
+			}else if(game_prop.board[3] === currentPlayer && game_prop.board[6] === currentPlayer){
+				console.log(temp);
+			}else if(game_prop.board[4] === currentPlayer && game_prop.board[8] === currentPlayer){
+				console.log(temp);
+			}
+
+
+		}else if(game_prop.board[1] === currentPlayer){
+
+			if(game_prop.board[4] === currentPlayer && game_prop.board[7] === currentPlayer){
+				console.log(temp);
+			}
+
+		}else if(game_prop.board[2] === currentPlayer){
+
+			if(game_prop.board[5] === currentPlayer && game_prop.board[8] === currentPlayer){
+				console.log(temp);
+			}else if(game_prop.board[4] === currentPlayer && game_prop.board[6] === currentPlayer){
+				console.log(temp);
+			}
+
+		}else if(game_prop.board[3] === currentPlayer){
+			
+			if(game_prop.board[4] === currentPlayer && game_prop.board[5] === currentPlayer){
+				console.log(temp);
+			}
+
+		}else if(game_prop.board[6] === currentPlayer){
+			
+			if(game_prop.board[7] === currentPlayer && game_prop.board[8] === currentPlayer){
+				console.log(temp);
+			}
+
+		}
+
 	}
 
 

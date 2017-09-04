@@ -18,7 +18,7 @@
   <div class="start-block ">
    <h1>Would you like to be X or O?</h1>
    <button id="start-btn" type="button" class="btn btn-secondary btn-lg" data-player="X" data-com="0">X</button>
-<button id="start-btn" type="button" class="btn btn-secondary btn-lg" data-player="0" data-com="X">0</button>
+   <button id="start-btn" type="button" class="btn btn-secondary btn-lg" data-player="O" data-com="X">O</button>
   </div>
   <div class="white-block">
   	<div class="info-block">
@@ -34,25 +34,25 @@
    </div>
     <table id="board">
 		<tr>
-			<td id="0"  class='board-block' onClick="icon(this.id)" value='0'>
+			<td id="0"  class='board-block' onClick="fillBlock(this.id)" value='0'>
 				
 			</td>
-			<td id="1" class='board-block' onClick="icon(this.id)" value='1'>
+			<td id="1" class='board-block' onClick="fillBlock(this.id)" value='1'>
 				
 			</td>
-			<td id="2" class='board-block' onClick="icon(this.id)" value='2'>
+			<td id="2" class='board-block' onClick="fillBlock(this.id)" value='2'>
 			
 			</td>
 		 </tr>
 		<tr>
-			<td id="3" class='board-block' onClick="icon(this.id)" value='3'> </td>
-			<td id="4"  class='board-block' onClick="icon(this.id)" value='4'> </td>
-			<td id="5" class='board-block' onClick="icon(this.id)" value='5'> </td>
+			<td id="3" class='board-block' onClick="fillBlock(this.id)" value='3'> </td>
+			<td id="4"  class='board-block' onClick="fillBlock(this.id)" value='4'> </td>
+			<td id="5" class='board-block' onClick="fillBlock(this.id)" value='5'> </td>
 		</tr>
 		<tr>
-			<td id="6" class='board-block' onClick="icon(this.id)" value='6'> </td>
-			<td id="7" class='board-block' onClick="icon(this.id)" value='7'> </td>
-			<td id="8" class='board-block' onClick="icon(this.id)" value='8'> </td>
+			<td id="6" class='board-block' onClick="fillBlock(this.id)" value='6'> </td>
+			<td id="7" class='board-block' onClick="fillBlock(this.id)" value='7'> </td>
+			<td id="8" class='board-block' onClick="fillBlock(this.id)" value='8'> </td>
 		  </tr>
 	</table>    
         
