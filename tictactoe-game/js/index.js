@@ -10,99 +10,71 @@ var game_prop = {
 
 const boardBlocks = document.querySelectorAll('.board-block');
 
+//starting game properties
+const startButtons = document.querySelectorAll('.btn-secondary');
 
-    //reset game
-    var btn_reset = document.getElementById('btn-reset');
-    btn_reset.onclick = function() {resetGame()};
+startButtons.forEach(
+	key => addEventListener('click', selectPlayerChar, false)		
+);
 
-	function resetGame(){
-		//hide board, clean record, ask X or O, showboard
-		
+function selectPlayerChar(element){
+	//define chars for players
+	if(element.target.getAttribute('id') === "start-btn"){
+		console.log("select char & start");
+        setupGameProp(element);
+        showGameBoard();
+        setupRecordDataAttr(element); 
+		}
 
+}   
 
+//reset game
+var btn_reset = document.getElementById('btn-reset');
+btn_reset.onclick = function() {resetGame()};
 
-
-		//styling
-		document.querySelector(".start-block").classList.remove("m-fadeOut");
-        document.querySelector(".white-block").classList.remove("m-fadeIn");
-        
-        //reset game properties (variables)
-        game_prop.plr = game_prop.com = game_prop.crrt_plr = "";
-        game_prop.plr_rcrd = game_prop.com_rcrd = 0;
-        game_prop.moves = 0;
-        game_prop.board = [0,1,2,3,4,5,6,7,8];
-        //reset game properties (elements)
-        boardBlocks.forEach(block => {
-        	block.innerHTML = "";
-        	block.onclick = function() {fillBlock(this.id)};
-        	block.classList.remove("win");
-        	//add onclick attribute
-        });
-        
-
-
-        console.log( 'game reset');
-	}
+function resetGame(){
+	//hide board, clean record, ask X or O, showboard
+	hideGameBoard();
+    resetGameProp();
+    resetBoard();
+    console.log( 'game reset');
+}
 
 
+//fill Board
+function fillBlock(block_id){
 	
+	updateBoardBlock(block_id);
 
-	//starting game events
-	const startButtons = document.querySelectorAll('.btn-secondary');
+    //every time a block is filled
 
-	startButtons.forEach(
-		key => addEventListener('click', selectPlayerChar, false)		
-    );
+    //check state of the game
+    checkStateGame(game_prop.crrt_plr);
 
-	
-	function selectPlayerChar(element){
-		//define chars for players
-		if(element.target.getAttribute('id') === "start-btn"){
-			console.log("select char & start");
+    //change current player (to change char)
+    game_prop.crrt_plr === game_prop.plr ? game_prop.crrt_plr = game_prop.com : game_prop.crrt_plr = game_prop.plr;
+    
+    //increment number plays done
+    game_prop.moves++;
 
-			game_prop.plr = element.target.getAttribute('data-player');
-            game_prop.com = element.target.getAttribute('data-com');
-            game_prop.crrt_plr = game_prop.plr; // switch each game (depending on number games realized)
-            
-            //hide starting block ^& show block
-            document.querySelector(".start-block").className += ' m-fadeOut';
-            document.querySelector(".white-block").className += ' m-fadeIn';
-
-            //document.querySelector("record").dataset.player = element.target.getAttribute('data-player');
-            document.querySelectorAll(".record")[0].setAttribute('data-player',element.target.getAttribute('data-player'));
-			document.querySelectorAll(".record")[1].setAttribute('data-player',element.target.getAttribute('data-com'));
-			}
-
-	}
-
-
-	//fill Board
-	function fillBlock(block_id){
-		
-        //fill block with current player char
-        document.getElementById(block_id).innerText = game_prop.crrt_plr;
-        game_prop.board[block_id] = game_prop.crrt_plr;
-        console.log(game_prop.board);
-
-        //every time a block is filled
-
-        //check state of the game
-        checkStateGame(game_prop.crrt_plr);
-
-        //change current player (to change char)
-        game_prop.crrt_plr === game_prop.plr ? game_prop.crrt_plr = game_prop.com : game_prop.crrt_plr = game_prop.plr;
-        
-        //increment number plays done
-        game_prop.moves++;
-
-        
-        //check if is com turn (apply here the minimax alghoritm)
+    
+    //check if is com turn (apply here the minimax alghoritm)
 
 
 
-        //remove block click event
-        document.getElementById(block_id).removeAttribute("onClick");
-	}
+    //remove block click event
+    document.getElementById(block_id).removeAttribute("onClick");
+}
+
+//fillBlock()
+function updateBoardBlock(block_id){
+	//fill block with current player char
+    document.getElementById(block_id).innerText = game_prop.crrt_plr;
+    game_prop.board[block_id] = game_prop.crrt_plr;
+    console.log(game_prop.board);
+}
+
+
 
 	function showWinner(blocksWinID, winner){
 		
@@ -120,14 +92,9 @@ const boardBlocks = document.querySelectorAll('.board-block');
 
 		function updateRecord(){
 		    if(winner === document.querySelectorAll(".record")[0].getAttribute('data-player')){
-		    	document.querySelectorAll(".record span")[0].innerText = 
+		    	document.querySelectorAll(".record span")[0].innerText = '';
 		    }
-
 		}
-
-		
-
-
 	}
 
 	function checkStateGame(currentPlayer){
@@ -192,8 +159,49 @@ const boardBlocks = document.querySelectorAll('.board-block');
 	}
 
 
+// Helpers
+//selectPlayerChar()
+function showGameBoard(){
+    document.querySelector(".start-block").className += ' m-fadeOut';
+    document.querySelector(".white-block").className += ' m-fadeIn';
+}
+
+function setupGameProp(element){
+	game_prop.plr = element.target.getAttribute('data-player');
+    game_prop.com = element.target.getAttribute('data-com');
+    game_prop.crrt_plr = game_prop.plr; // switch each game (depending on number games realized)
+}
+
+function setupRecordDataAttr(element){
+    document.querySelectorAll(".record")[0].setAttribute('data-player',element.target.getAttribute('data-player'));
+    document.querySelectorAll(".record")[1].setAttribute('data-player',element.target.getAttribute('data-com'));
+}
 
 
+
+//resetGame()
+function hideGameBoard(){
+	document.querySelector(".start-block").classList.remove("m-fadeOut");
+    document.querySelector(".white-block").classList.remove("m-fadeIn");
+}
+
+function resetGameProp(){
+	//reset game properties (variables)
+    game_prop.plr = game_prop.com = game_prop.crrt_plr = "";
+    game_prop.plr_rcrd = game_prop.com_rcrd = 0;
+    game_prop.moves = 0;
+    game_prop.board = [0,1,2,3,4,5,6,7,8];
+}
+
+function resetBoard(){
+	//reset game properties (elements)
+    boardBlocks.forEach(block => {
+    	block.innerHTML = "";
+    	block.onclick = function() {fillBlock(this.id)};
+    	block.classList.remove("win");
+    	//add onclick attribute
+    });
+}
 
 
 
