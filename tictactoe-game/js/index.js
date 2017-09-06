@@ -8,6 +8,8 @@ var game_prop = {
     board: [0,1,2,3,4,5,6,7,8]
  };
 
+const boardBlocks = document.querySelectorAll('.board-block');
+
 
     //reset game
     var btn_reset = document.getElementById('btn-reset');
@@ -16,13 +18,29 @@ var game_prop = {
 	function resetGame(){
 		//hide board, clean record, ask X or O, showboard
 		
+
+
+
+
 		//styling
 		document.querySelector(".start-block").classList.remove("m-fadeOut");
         document.querySelector(".white-block").classList.remove("m-fadeIn");
         
-        //set up game properties
-        game_prop.plr = com = "";
+        //reset game properties (variables)
+        game_prop.plr = game_prop.com = game_prop.crrt_plr = "";
         game_prop.plr_rcrd = game_prop.com_rcrd = 0;
+        game_prop.moves = 0;
+        game_prop.board = [0,1,2,3,4,5,6,7,8];
+        //reset game properties (elements)
+        boardBlocks.forEach(block => {
+        	block.innerHTML = "";
+        	block.onclick = function() {fillBlock(this.id)};
+        	block.classList.remove("win");
+        	//add onclick attribute
+        });
+        
+
+
         console.log( 'game reset');
 	}
 
@@ -49,7 +67,12 @@ var game_prop = {
             //hide starting block ^& show block
             document.querySelector(".start-block").className += ' m-fadeOut';
             document.querySelector(".white-block").className += ' m-fadeIn';
-		}
+
+            //document.querySelector("record").dataset.player = element.target.getAttribute('data-player');
+            document.querySelectorAll(".record")[0].setAttribute('data-player',element.target.getAttribute('data-player'));
+			document.querySelectorAll(".record")[1].setAttribute('data-player',element.target.getAttribute('data-com'));
+			}
+
 	}
 
 
@@ -81,6 +104,32 @@ var game_prop = {
         document.getElementById(block_id).removeAttribute("onClick");
 	}
 
+	function showWinner(blocksWinID, winner){
+		
+		
+
+		boardBlocks.forEach(block => {
+			if(block.id == blocksWinID[0] || block.id == blocksWinID[1] || block.id == blocksWinID[2]){
+				document.getElementById(blocksWinID[0]).classList.add("win");
+				document.getElementById(blocksWinID[1]).classList.add("win");
+				document.getElementById(blocksWinID[2]).classList.add("win");
+			}
+		});
+
+		setInterval(updateRecord, 1000);
+
+		function updateRecord(){
+		    if(winner === document.querySelectorAll(".record")[0].getAttribute('data-player')){
+		    	document.querySelectorAll(".record span")[0].innerText = 
+		    }
+
+		}
+
+		
+
+
+	}
+
 	function checkStateGame(currentPlayer){
 
 		var temp = currentPlayer + "WINSSS!";
@@ -89,10 +138,16 @@ var game_prop = {
 
 			if(game_prop.board[1] === currentPlayer && game_prop.board[2] === currentPlayer){
 				console.log(temp);
+				const winnerBlocksPos = [0,1,2];
+				showWinner(winnerBlocksPos,currentPlayer );
 			}else if(game_prop.board[3] === currentPlayer && game_prop.board[6] === currentPlayer){
 				console.log(temp);
+				const winnerBlocksPos = [0,3,6];
+				showWinner(winnerBlocksPos,currentPlayer );
 			}else if(game_prop.board[4] === currentPlayer && game_prop.board[8] === currentPlayer){
 				console.log(temp);
+				const winnerBlocksPos = [0,4,8];
+				showWinner(winnerBlocksPos,currentPlayer );
 			}
 
 
@@ -100,31 +155,42 @@ var game_prop = {
 
 			if(game_prop.board[4] === currentPlayer && game_prop.board[7] === currentPlayer){
 				console.log(temp);
+				const winnerBlocksPos = [1,4,7];
+				showWinner(winnerBlocksPos,currentPlayer );
 			}
 
 		}else if(game_prop.board[2] === currentPlayer){
 
 			if(game_prop.board[5] === currentPlayer && game_prop.board[8] === currentPlayer){
 				console.log(temp);
+				const winnerBlocksPos = [2,5,8];
+				showWinner(winnerBlocksPos,currentPlayer );
 			}else if(game_prop.board[4] === currentPlayer && game_prop.board[6] === currentPlayer){
 				console.log(temp);
+				const winnerBlocksPos = [2,4,6];
+				showWinner(winnerBlocksPos,currentPlayer );
 			}
 
 		}else if(game_prop.board[3] === currentPlayer){
 			
 			if(game_prop.board[4] === currentPlayer && game_prop.board[5] === currentPlayer){
 				console.log(temp);
+				const winnerBlocksPos = [3,4,5];
+				showWinner(winnerBlocksPos,currentPlayer );
 			}
 
 		}else if(game_prop.board[6] === currentPlayer){
 			
 			if(game_prop.board[7] === currentPlayer && game_prop.board[8] === currentPlayer){
 				console.log(temp);
+				const winnerBlocksPos = [6,7,8];
+				showWinner(winnerBlocksPos,currentPlayer );
 			}
 
 		}
 
 	}
+
 
 
 
