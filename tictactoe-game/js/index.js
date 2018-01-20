@@ -38,29 +38,31 @@ function resetGame(){
 	//hide board, clean record, ask X or O, showboard
 	hideGameBoard();
     resetGameProp();
-    resetBoard();
+	resetBoard();
+	resetBoardRecords();
+	
 }
 
 //fill Board
 function fillBlock(block_id){
+	const blockInnerText = document.getElementById(block_id).innerText;
+	if(blockInnerText === ''){
+		updateBoardBlock(block_id);
+		//every time a block is filled
+		//check state of the game
+		checkStateGame(game_prop.crrt_plr);
+		//change current player (to change char)
+		game_prop.crrt_plr === game_prop.plr ? game_prop.crrt_plr = game_prop.com : game_prop.crrt_plr = game_prop.plr;
+		//increment number plays done
+		game_prop.moves++;
+		//check if is com turn (apply here the minimax alghoritm)
+		//remove block click event
+		document.getElementById(block_id).removeAttribute("onClick");
+	}
 	
-	updateBoardBlock(block_id);
 
-    //every time a block is filled
 
-    //check state of the game
-    checkStateGame(game_prop.crrt_plr);
-
-    //change current player (to change char)
-    game_prop.crrt_plr === game_prop.plr ? game_prop.crrt_plr = game_prop.com : game_prop.crrt_plr = game_prop.plr;
-    
-    //increment number plays done
-    game_prop.moves++;
-    
-    //check if is com turn (apply here the minimax alghoritm)
-
-    //remove block click event
-    document.getElementById(block_id).removeAttribute("onClick");
+	
 }
 
 //fillBlock()
@@ -179,9 +181,12 @@ function updateBoardBlock(block_id){
 				const winnerBlocksPos = [6,7,8];
 				showWinner(winnerBlocksPos,currentPlayer );
 			}
+		}else{
+			checkIfBoardFull();
+
 		}
 
-		checkIfBoardFull();
+
 
 	}
 
@@ -196,7 +201,10 @@ function showGameBoard(){
 function setupGameProp(element){
 	game_prop.plr = element.target.getAttribute('data-player');
     game_prop.com = element.target.getAttribute('data-com');
-    game_prop.crrt_plr = game_prop.plr; // switch each game (depending on number games realized)
+	game_prop.crrt_plr = game_prop.plr; // switch each game (depending on number games realized)
+	//update players html elements symbol
+	document.querySelectorAll(".record")[0].innerText = 'Player [' + game_prop.plr + ']>';
+    document.querySelectorAll(".record")[1].innerText = 'Comp. [' + game_prop.com + ']';
 }
 
 function setupRecordDataAttr(element){
@@ -234,9 +242,19 @@ function resetBoard(){
 		block.classList.remove("win");
 		block.classList.remove("tie");
 		resetBoardProp();
+
+
     	//add onclick attribute
     });
 }
+
+function resetBoardRecords(){
+		//reset records
+		document.querySelectorAll(".record span")[0].innerText = 0;
+		document.querySelectorAll(".record span")[1].innerText = 0;
+}
+
+
 
 
 
