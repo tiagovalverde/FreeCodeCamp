@@ -5,9 +5,12 @@ var game_prop = {
     com_rcrd: 0,
     crrt_plr: "",
     moves: 0,
-    board: [0,1,2,3,4,5,6,7,8]
+	board: [0,1,2,3,4,5,6,7,8],
+	game_over: 0 //0: fa;se, 1: true
+	
  };
 
+//elements
 const boardBlocks = document.querySelectorAll('.board-block');
 
 //starting game properties
@@ -40,7 +43,6 @@ function resetGame(){
     console.log( 'game reset');
 }
 
-
 //fill Board
 function fillBlock(block_id){
 	
@@ -56,11 +58,8 @@ function fillBlock(block_id){
     
     //increment number plays done
     game_prop.moves++;
-
     
     //check if is com turn (apply here the minimax alghoritm)
-
-
 
     //remove block click event
     document.getElementById(block_id).removeAttribute("onClick");
@@ -77,8 +76,9 @@ function updateBoardBlock(block_id){
 
 
 	function showWinner(blocksWinID, winner){
-		
-		
+
+		console.log("showWinner ----------");
+		console.log(winner);
 
 		boardBlocks.forEach(block => {
 			if(block.id == blocksWinID[0] || block.id == blocksWinID[1] || block.id == blocksWinID[2]){
@@ -88,12 +88,17 @@ function updateBoardBlock(block_id){
 			}
 		});
 
-		setInterval(updateRecord, 1000);
+		setTimeout(updateRecord, 1000);
+		clearInterval(updateRecord);
 
 		function updateRecord(){
 		    if(winner === document.querySelectorAll(".record")[0].getAttribute('data-player')){
-		    	document.querySelectorAll(".record span")[0].innerText = '';
-		    }
+				var new_record = game_prop.plr_rcrd+1;
+				document.querySelectorAll(".record span")[0].innerText = new_record;
+		    }else{
+				var new_record = game_prop.com_rcrd+1;
+				document.querySelectorAll(".record span")[1].innerText = new_record;
+			}
 		}
 	}
 
@@ -153,13 +158,15 @@ function updateBoardBlock(block_id){
 				const winnerBlocksPos = [6,7,8];
 				showWinner(winnerBlocksPos,currentPlayer );
 			}
-
 		}
-
 	}
 
 
 // Helpers
+function gameOver(){
+
+}
+
 //selectPlayerChar()
 function showGameBoard(){
     document.querySelector(".start-block").className += ' m-fadeOut';
@@ -190,7 +197,8 @@ function resetGameProp(){
     game_prop.plr = game_prop.com = game_prop.crrt_plr = "";
     game_prop.plr_rcrd = game_prop.com_rcrd = 0;
     game_prop.moves = 0;
-    game_prop.board = [0,1,2,3,4,5,6,7,8];
+	game_prop.board = [0,1,2,3,4,5,6,7,8];
+	game_prop.game_over = 0;
 }
 
 function resetBoard(){

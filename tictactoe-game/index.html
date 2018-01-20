@@ -3,33 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Tic Tac Toe Game</title>
-  
-  
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
-
-      <link rel="stylesheet" href="css/style.css">
-
-  
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
   <div class="wrapper">
-  
-  <div class="start-block ">
-   <h1>Would you like to be X or O?</h1>
-   <button id="start-btn" type="button" class="btn btn-secondary btn-lg" data-player="X" data-com="0">X</button>
-   <button id="start-btn" type="button" class="btn btn-secondary btn-lg" data-player="O" data-com="X">O</button>
-  </div>
-  <div class="white-block">
-  	<div class="info-block">
-    
-  		<div class="flex-grid">
-		  <div class="col record" data-player="">Player: <span>0</span></div>
-		  <div class="col record" data-player="">Computer: <span>0</span></div>
-		  <div class="col">
-		  	<button type="button" id='btn-reset' class="btn-reset">Reset All</button>
-		  </div>
+		<div class="start-block ">
+		<h1>Would you like to be X or O?</h1>
+		<button id="start-btn" type="button" class="btn btn-secondary btn-lg" data-player="X" data-com="0">X</button>
+		<button id="start-btn" type="button" class="btn btn-secondary btn-lg" data-player="O" data-com="X">O</button>
 		</div>
+
+		<div class="white-block">
+			<div class="info-block">
+				<div class="flex-grid">
+				<div class="col record" data-player="">Player: <span>0</span></div>
+				<div class="col record" data-player="">Computer: <span>0</span></div>
+				<div class="col">
+					<button type="button" id='btn-reset' class="btn-reset">Reset All</button>
+				</div>
+			</div>
 
    </div>
     <table id="board">
@@ -56,12 +50,10 @@
 		  </tr>
 	</table>    
         
-  </div>
-</div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-
-    <script src="js/index.js"></script>
-
+		</div>
+	</div>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+	<script src="js/index.js"></script>
 </body>
 </html>
