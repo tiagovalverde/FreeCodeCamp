@@ -50,7 +50,7 @@ function fillBlock(block_id){
 		updateBoardBlock(block_id);
 		//every time a block is filled
 		//check state of the game
-		checkStateGame(game_prop.crrt_plr);
+		checkStateGame(game_prop.crrt_plr, block_id);
 		//change current player (to change char)
 		game_prop.crrt_plr === game_prop.plr ? game_prop.crrt_plr = game_prop.com : game_prop.crrt_plr = game_prop.plr;
 		//increment number plays done
@@ -99,10 +99,20 @@ function updateBoardBlock(block_id){
 		function updateRecord(){
 		    if(winner === document.querySelectorAll(".record")[0].getAttribute('data-player')){
 				game_prop.plr_rcrd += 1;
-				document.querySelectorAll(".record span")[0].innerText = game_prop.plr_rcrd;
+				//document.querySelectorAll(".record span")[0].innerText = game_prop.plr_rcrd;
+
+				document.querySelectorAll(".record")[0]
+					.innerText = 'Comp. [' + game_prop.plr + ']: ' + game_prop.plr_rcrd;
+
+
+
+
+
 		    }else{
 				game_prop.com_rcrd += 1;
-				document.querySelectorAll(".record span")[1].innerText = game_prop.com_rcrd;
+				//document.querySelectorAll(".record span")[1].innerText = game_prop.com_rcrd;
+				document.querySelectorAll(".record")[1]
+					.innerText = 'Comp. [' + game_prop.com + ']: ' + game_prop.com_rcrd;
 			}
 		}
 	}
@@ -134,60 +144,159 @@ function updateBoardBlock(block_id){
 		});
 	}
 
-	function checkStateGame(currentPlayer){
-
-		if(game_prop.board[0] === currentPlayer){
-
+	function checkStateGame(currentPlayer, block_id){
+		//when top right clicked
+		if(+block_id === 0) {
 			if(game_prop.board[1] === currentPlayer && game_prop.board[2] === currentPlayer){
 				const winnerBlocksPos = [0,1,2];
 				showWinner(winnerBlocksPos,currentPlayer );
+				return;
 			}else if(game_prop.board[3] === currentPlayer && game_prop.board[6] === currentPlayer){
 				const winnerBlocksPos = [0,3,6];
 				showWinner(winnerBlocksPos,currentPlayer );
-
+				return;
 			}else if(game_prop.board[4] === currentPlayer && game_prop.board[8] === currentPlayer){
 				const winnerBlocksPos = [0,4,8];
 				showWinner(winnerBlocksPos,currentPlayer );
+				return;
 			}
-
-
-		}else if(game_prop.board[1] === currentPlayer){
-
+			checkIfBoardFull();
+		}
+		//when top middle clicked
+		if(+block_id === 1) {
 			if(game_prop.board[4] === currentPlayer && game_prop.board[7] === currentPlayer){
+
 				const winnerBlocksPos = [1,4,7];
 				showWinner(winnerBlocksPos,currentPlayer );
+				return;
 			}
-
-		}else if(game_prop.board[2] === currentPlayer){
-
-			if(game_prop.board[5] === currentPlayer && game_prop.board[8] === currentPlayer){
-				const winnerBlocksPos = [2,5,8];
+			else if(game_prop.board[0] === currentPlayer && game_prop.board[2] === currentPlayer){
+				const winnerBlocksPos = [0,1,2];
 				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			console.log("no winner - check if full")
+			checkIfBoardFull();
+		}
+		//when top right clicked
+		if(+block_id === 2) {
+			if(game_prop.board[0] === currentPlayer && game_prop.board[1] === currentPlayer){
+				
+				const winnerBlocksPos = [0,1,2];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}else if(game_prop.board[5] === currentPlayer && game_prop.board[8] === currentPlayer){
+				const winnerBlocksPos = [2, 5, 8];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
 			}else if(game_prop.board[4] === currentPlayer && game_prop.board[6] === currentPlayer){
 				const winnerBlocksPos = [2,4,6];
 				showWinner(winnerBlocksPos,currentPlayer );
+				return;
 			}
-
-		}else if(game_prop.board[3] === currentPlayer){
-			
-			if(game_prop.board[4] === currentPlayer && game_prop.board[5] === currentPlayer){
+			checkIfBoardFull();
+		}
+		//when middle left clicked
+		if(+block_id === 3) {
+			if(game_prop.board[0] === currentPlayer && game_prop.board[6] === currentPlayer){
+				const winnerBlocksPos = [0,3,6];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			else if(game_prop.board[4] === currentPlayer && game_prop.board[5] === currentPlayer){
 				const winnerBlocksPos = [3,4,5];
 				showWinner(winnerBlocksPos,currentPlayer );
+				return;
 			}
-
-		}else if(game_prop.board[6] === currentPlayer){
-			
-			if(game_prop.board[7] === currentPlayer && game_prop.board[8] === currentPlayer){
+			checkIfBoardFull();
+		}
+		//when middle middle clicked
+		if(+block_id === 4) {
+			if(game_prop.board[3] === currentPlayer && game_prop.board[5] === currentPlayer){
+				const winnerBlocksPos = [3,4,5];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			else if(game_prop.board[1] === currentPlayer && game_prop.board[7] === currentPlayer){
+				const winnerBlocksPos = [1,4,7];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			else if(game_prop.board[0] === currentPlayer && game_prop.board[8] === currentPlayer){
+				const winnerBlocksPos = [0,4,8];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			else if(game_prop.board[2] === currentPlayer && game_prop.board[6] === currentPlayer){
+				const winnerBlocksPos = [2,4,6];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			checkIfBoardFull();
+		}
+		//middle right clicked
+		if(+block_id === 5) {
+			if(game_prop.board[2] === currentPlayer && game_prop.board[8] === currentPlayer){
+				const winnerBlocksPos = [2,5,8];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			else if(game_prop.board[3] === currentPlayer && game_prop.board[4] === currentPlayer){
+				const winnerBlocksPos = [3,4,5];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			checkIfBoardFull();
+		}
+		//bottom left clicked
+		if(+block_id === 6) {
+			if(game_prop.board[0] === currentPlayer && game_prop.board[3] === currentPlayer){
+				const winnerBlocksPos = [0,3,6];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}else if(game_prop.board[7] === currentPlayer && game_prop.board[8] === currentPlayer){
 				const winnerBlocksPos = [6,7,8];
 				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}else if(game_prop.board[4] === currentPlayer && game_prop.board[2] === currentPlayer){
+				const winnerBlocksPos = [6,4,2];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
 			}
-		}else{
 			checkIfBoardFull();
-
 		}
-
-
-
+		//bottom middle
+		if(+block_id === 7) {
+			if(game_prop.board[1] === currentPlayer && game_prop.board[4] === currentPlayer){
+				const winnerBlocksPos = [1,4,7];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			else if(game_prop.board[6] === currentPlayer && game_prop.board[8] === currentPlayer){
+				const winnerBlocksPos = [6,7,8];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			checkIfBoardFull();
+		}
+		//bottom right clicked
+		if(+block_id === 8) {
+			if(game_prop.board[0] === currentPlayer && game_prop.board[4] === currentPlayer){
+				const winnerBlocksPos = [0,4,8];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}else if(game_prop.board[7] === currentPlayer && game_prop.board[6] === currentPlayer){
+				const winnerBlocksPos = [6,7,8];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}else if(game_prop.board[2] === currentPlayer && game_prop.board[5] === currentPlayer){
+				const winnerBlocksPos = [2,5,8];
+				showWinner(winnerBlocksPos,currentPlayer );
+				return;
+			}
+			checkIfBoardFull();
+		}		
+			
 	}
 
 
@@ -203,7 +312,7 @@ function setupGameProp(element){
     game_prop.com = element.target.getAttribute('data-com');
 	game_prop.crrt_plr = game_prop.plr; // switch each game (depending on number games realized)
 	//update players html elements symbol
-	document.querySelectorAll(".record")[0].innerText = 'Player [' + game_prop.plr + ']>';
+	document.querySelectorAll(".record")[0].innerText = 'Player [' + game_prop.plr + ']';
     document.querySelectorAll(".record")[1].innerText = 'Comp. [' + game_prop.com + ']';
 }
 
