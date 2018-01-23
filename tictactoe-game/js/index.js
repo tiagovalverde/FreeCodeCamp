@@ -36,13 +36,10 @@ btn_reset.onclick = function() {resetGame()};
 
 //start game again from intro
 function resetGame(){
-	//hide board, clean record, ask X or O, showboard
 	hideGameBoard();
     resetGameProp();
 	resetBoard();
 }
-
-
 
 //fired when board clicked (every time block is clicked)
 function fillBlock(block_id){
@@ -53,28 +50,21 @@ function fillBlock(block_id){
 	if(blockInnerText === ''){
 		updateBoardBlock(block_id);
 		checkStateGame(game_prop.crrt_plr, block_id);
-		//change current player (to change char)
-		//game_prop.crrt_plr === game_prop.plr ? game_prop.crrt_plr = game_prop.com : game_prop.crrt_plr = game_prop.plr;
 
 		if(game_prop.crrt_plr === game_prop.plr){
 			game_prop.crrt_plr = game_prop.com;
 			document.querySelectorAll(".record")[0].classList.remove('current_player');
 			document.querySelectorAll(".record")[1].classList.add('current_player');
-
-
 		}else{
 			game_prop.crrt_plr = game_prop.plr
 			document.querySelectorAll(".record")[0].classList.add('current_player');
 			document.querySelectorAll(".record")[1].classList.remove('current_player');
 		}
 
-		
 		//increment number plays done
 		game_prop.moves++;
 		document.getElementById(block_id).removeAttribute("onClick"); //remove block click event
 	}
-
-
 }
 
 //update html block text when clicked
@@ -84,10 +74,8 @@ function updateBoardBlock(block_id){
     game_prop.board[block_id] = game_prop.crrt_plr;
 }
 
-
 //increments victory on winner and highlights board blocks
 function showWinner(blocksWinID, winner){
-
 	//disable onclick events on blocks
 	//highlight board
 	boardBlocks.forEach(block => {
@@ -119,7 +107,6 @@ function showWinner(blocksWinID, winner){
 	}
 }
 
-
 //highlight all blocks due to tie
 function highlightBlocksTie(){
 	boardBlocks.forEach(block => {
@@ -129,7 +116,6 @@ function highlightBlocksTie(){
 
 //check if board is full
 function checkIfBoardFull(){
-
 	isFull = 0;
 	boardBlocks.forEach(block => {
 		if(block.innerText != ''){
@@ -307,7 +293,6 @@ function showGameBoard(){
 }
 
 function setupGameProp(element){
-	
 	game_prop.plr = element.target.getAttribute('data-player');
     game_prop.com = element.target.getAttribute('data-com');
 	game_prop.crrt_plr = game_prop.plr; // switch each game (depending on number games realized)
