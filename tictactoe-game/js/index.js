@@ -29,6 +29,7 @@ function selectPlayerChar(element){
 		}
 }   
 
+
 //reset game button event
 var btn_reset = document.getElementById('btn-reset');
 btn_reset.onclick = function() {resetGame()};
@@ -41,19 +42,39 @@ function resetGame(){
 	resetBoard();
 }
 
+
+
 //fired when board clicked (every time block is clicked)
 function fillBlock(block_id){
 	const blockInnerText = document.getElementById(block_id).innerText;
+
+	let plr_won = '';
+	
 	if(blockInnerText === ''){
 		updateBoardBlock(block_id);
 		checkStateGame(game_prop.crrt_plr, block_id);
 		//change current player (to change char)
-		game_prop.crrt_plr === game_prop.plr ? game_prop.crrt_plr = game_prop.com : game_prop.crrt_plr = game_prop.plr;
+		//game_prop.crrt_plr === game_prop.plr ? game_prop.crrt_plr = game_prop.com : game_prop.crrt_plr = game_prop.plr;
+
+		if(game_prop.crrt_plr === game_prop.plr){
+			game_prop.crrt_plr = game_prop.com;
+			document.querySelectorAll(".record")[0].classList.remove('current_player');
+			document.querySelectorAll(".record")[1].classList.add('current_player');
+
+
+		}else{
+			game_prop.crrt_plr = game_prop.plr
+			document.querySelectorAll(".record")[0].classList.add('current_player');
+			document.querySelectorAll(".record")[1].classList.remove('current_player');
+		}
+
+		
 		//increment number plays done
 		game_prop.moves++;
-		//check if is com turn (apply here the minimax alghoritm)
 		document.getElementById(block_id).removeAttribute("onClick"); //remove block click event
 	}
+
+
 }
 
 //update html block text when clicked
@@ -89,11 +110,11 @@ function showWinner(blocksWinID, winner){
 		if(winner === document.querySelectorAll(".record")[0].getAttribute('data-player')){
 			game_prop.plr_rcrd += 1;
 			document.querySelectorAll(".record")[0]
-				.innerText = 'Comp. [' + game_prop.plr + ']: ' + game_prop.plr_rcrd;
+				.innerText = 'Player 1: ' + game_prop.plr_rcrd;
 		}else{
 			game_prop.com_rcrd += 1;
 			document.querySelectorAll(".record")[1]
-				.innerText = 'Comp. [' + game_prop.com + ']: ' + game_prop.com_rcrd;
+				.innerText = 'PLayer 2: ' + game_prop.com_rcrd;
 		}
 	}
 }
@@ -130,15 +151,15 @@ function checkStateGame(currentPlayer, block_id){
 		if(game_prop.board[1] === currentPlayer && game_prop.board[2] === currentPlayer){
 			const winnerBlocksPos = [0,1,2];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}else if(game_prop.board[3] === currentPlayer && game_prop.board[6] === currentPlayer){
 			const winnerBlocksPos = [0,3,6];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}else if(game_prop.board[4] === currentPlayer && game_prop.board[8] === currentPlayer){
 			const winnerBlocksPos = [0,4,8];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		checkIfBoardFull();
 	}
@@ -148,12 +169,12 @@ function checkStateGame(currentPlayer, block_id){
 
 			const winnerBlocksPos = [1,4,7];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		else if(game_prop.board[0] === currentPlayer && game_prop.board[2] === currentPlayer){
 			const winnerBlocksPos = [0,1,2];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		checkIfBoardFull();
 	}
@@ -163,15 +184,15 @@ function checkStateGame(currentPlayer, block_id){
 			
 			const winnerBlocksPos = [0,1,2];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}else if(game_prop.board[5] === currentPlayer && game_prop.board[8] === currentPlayer){
 			const winnerBlocksPos = [2, 5, 8];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}else if(game_prop.board[4] === currentPlayer && game_prop.board[6] === currentPlayer){
 			const winnerBlocksPos = [2,4,6];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		checkIfBoardFull();
 	}
@@ -180,12 +201,12 @@ function checkStateGame(currentPlayer, block_id){
 		if(game_prop.board[0] === currentPlayer && game_prop.board[6] === currentPlayer){
 			const winnerBlocksPos = [0,3,6];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		else if(game_prop.board[4] === currentPlayer && game_prop.board[5] === currentPlayer){
 			const winnerBlocksPos = [3,4,5];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		checkIfBoardFull();
 	}
@@ -194,22 +215,22 @@ function checkStateGame(currentPlayer, block_id){
 		if(game_prop.board[3] === currentPlayer && game_prop.board[5] === currentPlayer){
 			const winnerBlocksPos = [3,4,5];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		else if(game_prop.board[1] === currentPlayer && game_prop.board[7] === currentPlayer){
 			const winnerBlocksPos = [1,4,7];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		else if(game_prop.board[0] === currentPlayer && game_prop.board[8] === currentPlayer){
 			const winnerBlocksPos = [0,4,8];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		else if(game_prop.board[2] === currentPlayer && game_prop.board[6] === currentPlayer){
 			const winnerBlocksPos = [2,4,6];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		checkIfBoardFull();
 	}
@@ -218,12 +239,12 @@ function checkStateGame(currentPlayer, block_id){
 		if(game_prop.board[2] === currentPlayer && game_prop.board[8] === currentPlayer){
 			const winnerBlocksPos = [2,5,8];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		else if(game_prop.board[3] === currentPlayer && game_prop.board[4] === currentPlayer){
 			const winnerBlocksPos = [3,4,5];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		checkIfBoardFull();
 	}
@@ -232,15 +253,15 @@ function checkStateGame(currentPlayer, block_id){
 		if(game_prop.board[0] === currentPlayer && game_prop.board[3] === currentPlayer){
 			const winnerBlocksPos = [0,3,6];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}else if(game_prop.board[7] === currentPlayer && game_prop.board[8] === currentPlayer){
 			const winnerBlocksPos = [6,7,8];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}else if(game_prop.board[4] === currentPlayer && game_prop.board[2] === currentPlayer){
 			const winnerBlocksPos = [6,4,2];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		checkIfBoardFull();
 	}
@@ -249,12 +270,12 @@ function checkStateGame(currentPlayer, block_id){
 		if(game_prop.board[1] === currentPlayer && game_prop.board[4] === currentPlayer){
 			const winnerBlocksPos = [1,4,7];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		else if(game_prop.board[6] === currentPlayer && game_prop.board[8] === currentPlayer){
 			const winnerBlocksPos = [6,7,8];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		checkIfBoardFull();
 	}
@@ -263,15 +284,15 @@ function checkStateGame(currentPlayer, block_id){
 		if(game_prop.board[0] === currentPlayer && game_prop.board[4] === currentPlayer){
 			const winnerBlocksPos = [0,4,8];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}else if(game_prop.board[7] === currentPlayer && game_prop.board[6] === currentPlayer){
 			const winnerBlocksPos = [6,7,8];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}else if(game_prop.board[2] === currentPlayer && game_prop.board[5] === currentPlayer){
 			const winnerBlocksPos = [2,5,8];
 			showWinner(winnerBlocksPos,currentPlayer );
-			return;
+			return 'win';
 		}
 		checkIfBoardFull();
 	}		
@@ -286,12 +307,15 @@ function showGameBoard(){
 }
 
 function setupGameProp(element){
+	
 	game_prop.plr = element.target.getAttribute('data-player');
     game_prop.com = element.target.getAttribute('data-com');
 	game_prop.crrt_plr = game_prop.plr; // switch each game (depending on number games realized)
+	document.querySelectorAll(".record")[0].classList.add('current_player');
+	document.querySelectorAll(".record")[1].classList.remove('current_player');
 	//update players html elements symbol
-	document.querySelectorAll(".record")[0].innerText = 'Player [' + game_prop.plr + ']';
-    document.querySelectorAll(".record")[1].innerText = 'Comp. [' + game_prop.com + ']';
+	document.querySelectorAll(".record")[0].innerText = 'Player 1:';
+    document.querySelectorAll(".record")[1].innerText = 'Player 2:';
 }
 
 function setupRecordDataAttr(element){

@@ -44,6 +44,7 @@ html{
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 300ms, opacity 300ms;
+  
 }
 
 .start-block{
@@ -115,20 +116,46 @@ tr:nth-of-type(3) td {
   text-align: center;
 }
 
+.record {
+  background-color:#fff;
+  border: 2px solid #fff;
+  border-radius: 50px 20px;
+}
+
+.current_player{
+  background-color:#eceeef;
+  border: 2px solid #eceeef;
+  border-radius: 50px 20px;
+}
+
+
+
+
+
 .info-block{
   margin: 20px 0px;
 }
 
 .btn-reset{
-  background:none!important;
+   background:none!important;
      color:inherit;
      border:none; 
      padding:0!important;
      font: inherit;
      /*border is optional*/
-     outline: none !important;
-     cursor: pointer;
-     
+     outline: none !important; 
+}
+
+.btn_highlight{
+  background-color:#fff;
+  border: 2px solid #fff;
+  border-radius: 50px 20px;
+}
+
+.btn_highlight:hover{
+  background-color:#eceeef;
+  border: 2px solid #eceeef;
+  border-radius: 50px 20px;
 }
 
 .win {
