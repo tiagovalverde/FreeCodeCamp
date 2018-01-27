@@ -1,3 +1,7 @@
+body{
+    background-color: #FBBF64;
+  }
+
 .wrapper{
     border-radius: 100%;
     position: relative;
@@ -58,3 +62,28 @@ sub-wrapper {
     border: 10px solid  #373a3f;
     
 }
+
+@media screen and (max-width: 500px){
+
+    .wrapper {
+      top: 40px;
+      
+      -moz-transform: scale(0.5);
+      -ms-transform: scale(0.5);
+      -o-transform: scale(0.5);
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+      
+      -o-transform-origin: 0 0;
+      -ms-transform-origin: 0 0;
+      -webkit-transform-origin: 0 0;
+      -moz-transform-origin: 0 0;
+      transform-origin: 0 0;
+      
+      left: 60%;
+      margin-left: -142px;
+    }
+
+
+
+  }
