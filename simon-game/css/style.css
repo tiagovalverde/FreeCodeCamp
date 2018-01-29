@@ -44,12 +44,12 @@ body{
 }
 
 /* CONTROLS */
-.rw {
+.controls {
     margin-bottom: -4px;
 }
 
-.display {
-    width: 60px;
+.counter-control {
+    width: 80px;
     position: relative;
     text-align: center;
 }
@@ -67,12 +67,13 @@ body{
     color: #430710;
 }
 
-.count {
+.counter {
     font-family: 'VT323', monospace;
     color: #DC0D29;
     padding: 0px;
     font-size: 2em;
-    width: 50px;
+    width: 60px;
+    height: 45px;
     background-color: #32050C;
     position: relative;
     border: 4px solid #222;
@@ -80,7 +81,7 @@ body{
     margin: auto;
 }
 
-.label {
+.control-desc {
     color: #222;
     font-family: 'Oswald',Arial,sans;
     font-size: 0.7em;
@@ -88,9 +89,7 @@ body{
     text-align: center;
 }
 
-.full-red {
-    background-color: #FC0102;
-}
+
 
 .clickable {
     pointer-events: auto;
@@ -101,15 +100,19 @@ body{
     width: 20px;
     height: 20px;
     position: relative;
-    background-color: yellow;
-    border-radius: 100%;
-    border: 4px solid #444;
+    background-color: rgb(255, 166, 0);
+    border-radius: 20%;
+    border: 2px solid #444;
     box-shadow: 0px 2px 3px #222;
     margin: auto;
     top: -5px;
 }
 
-.led {
+.full-red {
+    background-color: #cc3333;
+}
+
+.strict-indicator {
     width: 6px;
     height: 6px;
     background-color: #32050C;
@@ -122,11 +125,14 @@ body{
     top: -18px;
 }
 
-.rw.bot {
+/* turn on or off style */
+.controls.power-on-off {
     margin-top: 10px;
 }
 
-.sw-slot {
+
+
+.control-switch {
     height: 20px;
     width: 40px;
     background-color: #222;
@@ -136,17 +142,16 @@ body{
     cursor: pointer;
 }
 
-.switch {
-    height: 16px;
-    width: 16px;
+.power-switch {
+    height: 18px;
+    width: 18px;
     border-radius: 4px;
-    background-color: #3193DE;
+    background-color: rgb(23, 146, 33);
     position: relative;
-    border: 2px solid #333;
+    border: 2px solid #ECE7EE;
+    top: 1px;
+    left: 1px;
 }
-
-/* CONTROLS */
-
 
 
 /* color buttons style */
