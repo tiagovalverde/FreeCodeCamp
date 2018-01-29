@@ -14,25 +14,21 @@ body{
     width: 450px;
     height: 450px;
     box-shadow: 0px 0px 15px #373a3f;
-    top: 20vh;
+    top: 10vh;
 }
-
-sub-wrapper {
+/*
+.sub-wrapper {
     position: relative;
     top: 12px;
 }
+*/
 
+/* center of the game */ 
 .logo{
     font-family: 'Ultra', serif;
     color: #222;
-    font-size: 3em;
-    margin-top: 80px;
-}
-
-.rights {
-    font-size: 0.1em;
-    position: relative;
-    top: -20px;
+    font-size: 2.5em;
+    margin-top:35px;
 }
 
 .middle {
@@ -47,6 +43,113 @@ sub-wrapper {
     border: 12px solid #373a3f;
 }
 
+/* CONTROLS */
+.rw {
+    margin-bottom: -4px;
+}
+
+.display {
+    width: 60px;
+    position: relative;
+    text-align: center;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.btn-box {
+    width: 50px;
+    position: relative;
+}
+
+.led-off {
+    color: #430710;
+}
+
+.count {
+    font-family: 'VT323', monospace;
+    color: #DC0D29;
+    padding: 0px;
+    font-size: 2em;
+    width: 50px;
+    background-color: #32050C;
+    position: relative;
+    border: 4px solid #222;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.label {
+    color: #222;
+    font-family: 'Oswald',Arial,sans;
+    font-size: 0.7em;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.full-red {
+    background-color: #FC0102;
+}
+
+.clickable {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.round-btn {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    background-color: yellow;
+    border-radius: 100%;
+    border: 4px solid #444;
+    box-shadow: 0px 2px 3px #222;
+    margin: auto;
+    top: -5px;
+}
+
+.led {
+    width: 6px;
+    height: 6px;
+    background-color: #32050C;
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 2px solid #222;
+    top: -18px;
+}
+
+.rw.bot {
+    margin-top: 10px;
+}
+
+.sw-slot {
+    height: 20px;
+    width: 40px;
+    background-color: #222;
+    position: relative;
+    top: 5px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.switch {
+    height: 16px;
+    width: 16px;
+    border-radius: 4px;
+    background-color: #3193DE;
+    position: relative;
+    border: 2px solid #333;
+}
+
+/* CONTROLS */
+
+
+
+/* color buttons style */
 .green { 
     background-color:#33cc33;
     display: inline-block;
