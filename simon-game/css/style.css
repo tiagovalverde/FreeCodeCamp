@@ -153,8 +153,13 @@ body{
     left: 1px;
 }
 
+.on {
+    left:21px;
+}
+
 
 /* color buttons style */
+
 .green { 
     background-color:#33cc33;
     display: inline-block;
