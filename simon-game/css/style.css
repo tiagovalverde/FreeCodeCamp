@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Ultra');
+
+
 body{
     background-color: #FBBF64;
   }
@@ -17,6 +20,31 @@ body{
 sub-wrapper {
     position: relative;
     top: 12px;
+}
+
+.logo{
+    font-family: 'Ultra', serif;
+    color: #222;
+    font-size: 3em;
+    margin-top: 80px;
+}
+
+.rights {
+    font-size: 0.1em;
+    position: relative;
+    top: -20px;
+}
+
+.middle {
+    width: 240px;
+    height: 240px;
+    position: absolute;
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    margin: -122px 0 0 -122px;
+    background-color: #ECE7EE;
+    border: 12px solid #373a3f;
 }
 
 .green { 
@@ -41,26 +69,50 @@ sub-wrapper {
 
 .round-top-left{
     border-top-left-radius: 100%;
+
+    -webkit-box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
+-moz-box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
+box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
+
 }
 
 .round-top-right{
     border-top-right-radius: 100%;
+
+    -webkit-box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
+    -moz-box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
+    box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
 }
 
 .round-bottom-left{
     border-bottom-left-radius: 100%;
+
+    -webkit-box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
+-moz-box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
+box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
 }
 
 .round-bottom-right{
     border-bottom-right-radius: 100%;
+
+-webkit-box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
+-moz-box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
+box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
+    
 }
 
 .color-blocks {
     position: relative;
     height: 222px;
     width: 220px;
-    border: 10px solid  #373a3f;
-    
+    border: 10px solid  #373a3f; 
+}
+
+/* not on hover but on click */
+.color-blocks:hover {
+    -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
 
 @media screen and (max-width: 500px){
