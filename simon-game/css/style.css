@@ -63,9 +63,7 @@ body{
     position: relative;
 }
 
-.led-off {
-    color: #430710;
-}
+
 
 .counter {
     font-family: 'VT323', monospace;
@@ -79,6 +77,10 @@ body{
     border: 4px solid #222;
     border-radius: 10px;
     margin: auto;
+}
+
+.led-off {
+    color: #430710;
 }
 
 .control-desc {
@@ -96,7 +98,7 @@ body{
     cursor: pointer;
 }
 
-.round-btn {
+.control-btn {
     width: 20px;
     height: 20px;
     position: relative;
@@ -108,13 +110,16 @@ body{
     top: -5px;
 }
 
-.full-red {
-    background-color: #cc3333;
+.control-btn:active{
+    box-shadow : 0 1px 1px #292929;
+    top : -4px;
 }
 
+
+
 .strict-indicator {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background-color: #32050C;
     border-radius: 100%;
     position: absolute;
@@ -124,6 +129,11 @@ body{
     border: 2px solid #222;
     top: -18px;
 }
+
+.full-red {
+    background-color: #cc3333;
+}
+
 
 /* turn on or off style */
 .controls.power-on-off {
