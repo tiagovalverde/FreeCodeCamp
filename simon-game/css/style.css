@@ -131,7 +131,7 @@ body{
 }
 
 .full-red {
-    background-color: #cc3333;
+    background-color: #803030;
 }
 
 
@@ -175,9 +175,17 @@ body{
     display: inline-block;
 }
 
+.green-light { 
+    background-color:#b7f862;
+}
+
 .red { 
     background-color: #cd3232;
     display: inline-block;
+}
+
+.red-light {
+    background-color: #f34e4e;
 }
 
 .yellow { 
@@ -185,9 +193,17 @@ body{
     display: inline-block;
 }
 
+.yellow-light {
+    background-color:  #f3f34d;
+}
+
 .blue { 
     background-color: #0000e6;
     display: inline-block;
+}
+
+.blue-light { 
+    background-color: #205bfc;
 }
 
 .round-top-left{

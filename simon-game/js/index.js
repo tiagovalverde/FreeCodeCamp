@@ -7,6 +7,7 @@ SIMON_GAME = {
     is_playing_sequence: false,
     is_strict_mode: false,
     MAX_NUM_SEQUENCE: 20,
+    colors:  ['blue','red','green', 'yellow']
 };
 
 //controls events
@@ -15,7 +16,6 @@ var start_btn = document.getElementById('start');
 var strict_btn = document.getElementById('strict');
 var strict_indicator = document.getElementById('strict-indicator');
 var counter_txt = document.getElementById('counter');
-
 
 power_switch_btn.onclick = function() {onPowerSwitchClick()};
 
@@ -41,6 +41,73 @@ function onPowerSwitchClick(){
     }
 }
 
+async function onStartClick(){
+    //flashes counter led
+    var result = await flashCounterLed();
+    console.log(result);
+    //starts sequence
+    playSequence();
+}
+
+async function playSequence(){
+    SIMON_GAME.counter++; 
+    SIMON_GAME.sequence.push(getNextColorRand());
+    console.log(SIMON_GAME.sequence);
+    var result = await displaySequence();
+    console.log(result);
+}
+
+function displaySequence() {
+    return new Promise(resolve => {
+        let in_out = 0;
+        SIMON_GAME.sequence.map(function (color, index) {
+
+            setTimeout(() => {
+                document.getElementById(color).classList.add(color+'-light');
+            }, 1000);
+
+            setTimeout(() => {
+                document.getElementById(color).classList.remove(color+'-light');
+                if(index === SIMON_GAME.sequence.length -1){
+                             resolve('sequence done');
+                }
+            }, 2000);
+
+            // setTimeout(() => {
+            //     if(in_out === 0){
+            //         document.getElementById(color).classList.add(color+'-light');
+            //         in_out++;
+            //         index--;
+            //         //resolve('sequence done');
+            //     }else if (in_out === 1) {t
+            //         document.getElementById(color).classList.remove(color+'-light');
+            //         in_out = 0;
+            //     }
+            //     if(index === SIMON_GAME.sequence.length -1 && in_out == 1){
+            //         //run entire sequence
+            //         resolve('sequence done');
+            //     }   
+            // }, 1000);
+        });
+    });
+}
+
+function getNextColorRand(){
+    const randIndex= Math.floor(Math.random() * Math.floor(4));
+    return SIMON_GAME.colors[randIndex];
+}
+    
+function onStrictClick() {
+    if(SIMON_GAME.is_strict_mode){
+        SIMON_GAME.is_strict_mode = false;
+        strict_indicator.classList.remove('full-red');
+    }else{
+        SIMON_GAME.is_strict_mode = true;
+        strict_indicator.classList.add('full-red');
+    }
+    //console.log("srtict: " + SIMON_GAME.is_strict_mode);
+}
+
 function flashCounterLed() {
     //add remove class
     function addLed(){ counter_txt.classList.add('led-off');}
@@ -62,25 +129,6 @@ function flashCounterLed() {
             }, 500 + index * 500);
         });
     });
-}
-
-
-async function onStartClick(){
-    //flashes counter led
-    var result = await flashCounterLed();
-    console.log(result);
-    //starts sequence
-}
-    
-function onStrictClick() {
-    if(SIMON_GAME.is_strict_mode){
-        SIMON_GAME.is_strict_mode = false;
-        strict_indicator.classList.remove('full-red');
-    }else{
-        SIMON_GAME.is_strict_mode = true;
-        strict_indicator.classList.add('full-red');
-    }
-    //console.log("srtict: " + SIMON_GAME.is_strict_mode);
 }
 
 function resetGameOnject() {
