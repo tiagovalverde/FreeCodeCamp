@@ -177,6 +177,9 @@ body{
 
 .green-light { 
     background-color:#b7f862;
+    -webkit-box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
+    -moz-box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
+    box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
 }
 
 .red { 
@@ -186,6 +189,9 @@ body{
 
 .red-light {
     background-color: #f34e4e;
+    -webkit-box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
+    -moz-box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
+    box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
 }
 
 .yellow { 
@@ -195,6 +201,9 @@ body{
 
 .yellow-light {
     background-color:  #f3f34d;
+    -webkit-box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
+    -moz-box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
+    box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
 }
 
 .blue { 
@@ -204,40 +213,26 @@ body{
 
 .blue-light { 
     background-color: #205bfc;
+    -webkit-box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
+    -moz-box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
+    box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
 }
 
 .round-top-left{
     border-top-left-radius: 100%;
-
-    -webkit-box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
--moz-box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
-box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
-
 }
 
 .round-top-right{
     border-top-right-radius: 100%;
-
-    -webkit-box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
-    -moz-box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
-    box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
 }
 
 .round-bottom-left{
     border-bottom-left-radius: 100%;
 
-    -webkit-box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
--moz-box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
-box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
 }
 
 .round-bottom-right{
-    border-bottom-right-radius: 100%;
-
--webkit-box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
--moz-box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
-box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
-    
+    border-bottom-right-radius: 100%;  
 }
 
 .color-blocks {
