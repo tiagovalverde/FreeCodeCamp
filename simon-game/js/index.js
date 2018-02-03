@@ -50,14 +50,34 @@ async function onStartClick(){
 }
 
 async function playSequence(){
-    SIMON_GAME.counter++; 
+    SIMON_GAME.counter++;
     SIMON_GAME.sequence.push(getNextColorRand());
+    counter_txt.innerText = SIMON_GAME.counter;
     console.log(SIMON_GAME.sequence);
     var result = await displaySequence();
     console.log(result);
+    //player turn
+    SIMON_GAME.is_playing_sequence = false;
+    //add onCLick events on colors
+    setupColorsOnClick();
+    //finish and wait for user clicks
+}
+
+function setupColorsOnClick(){
+    var color_blocks = document.querySelectorAll('.color-blocks');
+
+    color_blocks.forEach((color) => {
+        color.onclick = function() {onClickColor(color.id)};
+    });
+
+    function onClickColor(color_id){
+        console.log(color_id);
+    }
 }
 
 function displaySequence() {
+    SIMON_GAME.is_playing_sequence = true;
+
     return new Promise(resolve => {
         let in_out = 0;
         SIMON_GAME.sequence.map(function (color, index) {
