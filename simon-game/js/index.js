@@ -8,6 +8,7 @@ SIMON_GAME = {
 	is_strict_mode: false,
 	MAX_NUM_SEQUENCE: 20,
 	colors: ['blue', 'red', 'green', 'yellow'],
+	games_played: 0, //flag var for start new game (promise handler)
 };
 
 //controls events
@@ -48,10 +49,14 @@ function onPowerSwitchClick() {
 }
 
 async function onStartClick() {
-	//flashes counter led
+	//check if game is starting
+	if (SIMON_GAME.sequence.length !== 0) {
+		//resetGameOnject(); //if is in progress
+		//removeColorsOnClick();
+		//counter_txt.innerText = '--';
+	}
 	var result = await flashCounterLed();
 	console.log(result);
-	//starts sequence
 	playSequence();
 }
 
