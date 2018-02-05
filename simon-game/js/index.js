@@ -56,6 +56,7 @@ async function onStartClick() {
 }
 
 async function replaySequence() {
+	counter_txt.innerText = SIMON_GAME.counter;
 	SIMON_GAME.is_playing_sequence = true;
 	var result = await displaySequence();
 	SIMON_GAME.is_playing_sequence = false;
@@ -107,7 +108,7 @@ function removeLightColor() {
 	this.classList.remove(this.id + '-light');
 }
 
-function onClickColor(color_id) {
+async function onClickColor(color_id) {
 	//check if value on index match user id
 	if (color_id === SIMON_GAME.sequence[SIMON_GAME.user_click_counter]) {
 		console.log('match');
@@ -127,6 +128,9 @@ function onClickColor(color_id) {
 			//reset and start sequence over
 		} else {
 			//same sequence is played again (strict false)
+
+			counter_txt.innerText = 'NO';
+			var result = await flashCounterLed();
 			SIMON_GAME.user_click_counter = 0;
 			removeColorsOnClick();
 			replaySequence();
