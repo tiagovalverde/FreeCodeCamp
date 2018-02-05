@@ -55,6 +55,13 @@ async function onStartClick() {
   playSequence();
 }
 
+async function replaySequence() {
+  SIMON_GAME.is_playing_sequence = true;
+  var result = await displaySequence();
+  SIMON_GAME.is_playing_sequence = false;
+  setupColorsOnClick();
+}
+
 async function playSequence() {
   SIMON_GAME.is_playing_sequence = true;
   SIMON_GAME.counter++;
@@ -89,10 +96,6 @@ function removeColorsOnClick() {
 }
 
 function onClickColor(color_id) {
-  console.log("compare");
-  console.log(color_id);
-  console.log(SIMON_GAME.sequence[SIMON_GAME.user_click_counter]);
-  console.log("---------");
   //check if value on index match user id
   if (color_id === SIMON_GAME.sequence[SIMON_GAME.user_click_counter]) {
     console.log("match");
@@ -105,13 +108,17 @@ function onClickColor(color_id) {
       console.log("continue guessing sequence");
       SIMON_GAME.user_click_counter++;
     }
-    //finished the sequence
   } else {
     console.log("fail");
-    //if match , user can keep clicking
     //if no match
-    //same sequence is played again (strict false)
-    //or start from 1 again (stict true)
+    if (SIMON_GAME.is_strict_mode) {
+      //reset and start sequence over
+    } else {
+      //same sequence is played again (strict false)
+      SIMON_GAME.user_click_counter = 0;
+      removeColorsOnClick();
+      replaySequence();
+    }
   }
 }
 
