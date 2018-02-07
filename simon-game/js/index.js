@@ -8,7 +8,7 @@ SIMON_GAME = {
 	is_strict_mode: false,
 	MAX_NUM_SEQUENCE: 20,
 	colors: ['blue', 'red', 'green', 'yellow'],
-	games_played: 0, //flag var for start new game (promise handler)
+	interrupt: false, //flag var for start new game (promise handler)
 };
 
 //controls events
@@ -51,9 +51,10 @@ function onPowerSwitchClick() {
 async function onStartClick() {
 	//check if game is starting
 	if (SIMON_GAME.sequence.length !== 0) {
-		//resetGameOnject(); //if is in progress
-		//removeColorsOnClick();
-		//counter_txt.innerText = '--';
+		SIMON_GAME.interrupt = true;
+		resetGameOnject(); //if is in progress
+		removeColorsOnClick();
+		resetGameDesign();
 	}
 	var result = await flashCounterLed();
 	console.log(result);
@@ -65,6 +66,9 @@ async function replaySequence() {
 	SIMON_GAME.is_playing_sequence = true;
 	var result = await displaySequence();
 	SIMON_GAME.is_playing_sequence = false;
+	if (result === 'interrupted') {
+		return;
+	}
 	setupColorsOnClick();
 }
 
@@ -78,6 +82,9 @@ async function playSequence() {
 	console.log(result);
 	//player turn
 	SIMON_GAME.is_playing_sequence = false;
+	if (result === 'interrupted') {
+		return;
+	}
 	//add onCLick events on colors
 	setupColorsOnClick();
 	//finish and wait for user clicks
@@ -149,16 +156,26 @@ function displaySequence() {
 	return new Promise(resolve => {
 		let in_out = 0;
 		SIMON_GAME.sequence.map(function(color, index) {
-			setTimeout(() => {
+			var lighter = setTimeout(() => {
 				document.getElementById(color).classList.add(color + '-light');
 			}, 500 + index * 1000);
 
-			setTimeout(() => {
+			var darker = setTimeout(() => {
 				document.getElementById(color).classList.remove(color + '-light');
 				if (index === SIMON_GAME.sequence.length - 1) {
 					resolve('sequence done');
 				}
 			}, 1000 + index * 1000);
+
+			//interrupted by user
+			if (SIMON_GAME.interrupt) {
+				clearTimeout(lighter);
+				clearTimeout(darker);
+				resolve('interrupted');
+			} else {
+				lighter;
+				darker;
+			}
 		});
 	});
 }
@@ -197,6 +214,7 @@ function flashCounterLed() {
 		flashingArray.map(function(fun, index) {
 			setTimeout(() => {
 				fun();
+
 				if (index === 3) {
 					resolve('flashing done');
 				}
@@ -213,4 +231,8 @@ function resetGameOnject() {
 	SIMON_GAME.is_playing_sequence = false;
 	SIMON_GAME.is_strict_mode = false;
 	MAX_NUM_SEQUENCE = 20;
+}
+
+function resetGameDesign() {
+	counter_txt.innerText = '--';
 }
