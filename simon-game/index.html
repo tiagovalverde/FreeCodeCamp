@@ -1,67 +1,57 @@
 <!DOCTYPE html>
-<html >
-    <head>
+<html>
+
+<head>
     <meta charset="UTF-8">
     <title>Simon Game - FreeCodeCamp Project</title>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
     <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-            <!-- <div>
-                    <h3>Simon Game</h3>
-                    <h4>Spinner Edition</h4>
-                </div> -->
-        <div class="wrapper">
-            
-            <div class="sub-wrapper">
-                <div class="red-green">
-                    <div class="green round-top-left color-blocks" id="green">
-                    </div>
-                    <div class="red round-top-right color-blocks" id="red">
-                    </div>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sub-wrapper">
+            <div class="red-green">
+                <div class="green round-top-left color-blocks" id="green">
                 </div>
-                <div class="yellow-blue">
-                    <div class="yellow round-bottom-left color-blocks" id="yellow">
-                    </div>
-                    <div class="blue round-bottom-right color-blocks" id="blue">
-                    </div>
+                <div class="red round-top-right color-blocks" id="red">
                 </div>
             </div>
-            <div class="middle">
-                <h3 class="logo">Simon</h3>
-
-                <div class="controls">
-                   
-                    <div class="btn-box inline">
-                      <div class="control-btn full-red clickable" id="start"></div>
-                      <h3 class="control-desc">START</h3>
-                    </div>
-                    <div class="counter-control inline">
-                        <h1 class="counter led-off" id="counter">--</h1>
-                        <h3 class="control-desc">COUNTER</h3>
-                      </div>
-                    <div class="btn-box inline">
-                      <div class="control-btn but clickable" id="strict"></div>
-                      <h3 class="control-desc">STRICT</h3>
-                      <div class="strict-indicator" id="strict-indicator"></div>
-                    </div>
-                  </div>
-
-                  <div class="controls power-on-off">
-                    <h3 class="control-desc inline">OFF</h3>
-                    <div class="control-switch inline">
-                      <div class="power-switch" id="power-switch"></div>
-                    </div>
-                    <h3 class="control-desc inline">ON</h3>
-                  </div>
-
-
-
+            <div class="yellow-blue">
+                <div class="yellow round-bottom-left color-blocks" id="yellow">
                 </div>
-                
+                <div class="blue round-bottom-right color-blocks" id="blue">
+                </div>
             </div>
-
         </div>
-        <script src="js/index.js"></script>
-    </body>
+        <div class="middle">
+            <h3 class="logo">Simon</h3>
+            <div class="controls">
+                <div class="btn-box inline">
+                    <div class="control-btn full-red" id="start"></div>
+                    <h3 class="control-desc">START</h3>
+                </div>
+                <div class="counter-control inline">
+                    <h1 class="counter led-off" id="counter">--</h1>
+                    <h3 class="control-desc">COUNTER</h3>
+                </div>
+                <div class="btn-box inline">
+                    <div class="control-btn but " id="strict"></div>
+                    <h3 class="control-desc">STRICT</h3>
+                    <div class="strict-indicator" id="strict-indicator"></div>
+                </div>
+            </div>
+            <div class="controls power-on-off">
+                <h3 class="control-desc inline">OFF</h3>
+                <div class="control-switch inline">
+                    <div class="power-switch" id="power-switch"></div>
+                </div>
+                <h3 class="control-desc inline">ON</h3>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
 </html>

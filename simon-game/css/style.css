@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Ultra');
-
-
-body{
+body {
     background-color: #FBBF64;
-  }
+}
 
-.wrapper{
+.wrapper {
     border-radius: 100%;
     position: relative;
     text-align: center;
@@ -16,6 +14,8 @@ body{
     box-shadow: 0px 0px 15px #373a3f;
     top: 10vh;
 }
+
+
 /*
 .sub-wrapper {
     position: relative;
@@ -23,12 +23,14 @@ body{
 }
 */
 
-/* center of the game */ 
-.logo{
+
+/* center of the game */
+
+.logo {
     font-family: 'Ultra', serif;
     color: #222;
     font-size: 2.5em;
-    margin-top:35px;
+    margin-top: 35px;
 }
 
 .middle {
@@ -43,7 +45,9 @@ body{
     border: 12px solid #373a3f;
 }
 
+
 /* CONTROLS */
+
 .controls {
     margin-bottom: -4px;
 }
@@ -62,8 +66,6 @@ body{
     width: 50px;
     position: relative;
 }
-
-
 
 .counter {
     font-family: 'VT323', monospace;
@@ -85,13 +87,11 @@ body{
 
 .control-desc {
     color: #222;
-    font-family: 'Oswald',Arial,sans;
+    font-family: 'Oswald', Arial, sans;
     font-size: 0.7em;
     margin-top: 5px;
     text-align: center;
 }
-
-
 
 .clickable {
     pointer-events: auto;
@@ -99,8 +99,8 @@ body{
 }
 
 .control-btn {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     position: relative;
     background-color: rgb(255, 166, 0);
     border-radius: 20%;
@@ -110,12 +110,10 @@ body{
     top: -5px;
 }
 
-.control-btn:active{
-    box-shadow : 0 1px 1px #292929;
-    top : -4px;
+.clickable:active {
+    box-shadow: 0 1px 1px #292929;
+    top: -4px;
 }
-
-
 
 .strict-indicator {
     width: 8px;
@@ -136,11 +134,10 @@ body{
 
 
 /* turn on or off style */
+
 .controls.power-on-off {
     margin-top: 10px;
 }
-
-
 
 .control-switch {
     height: 20px;
@@ -164,112 +161,110 @@ body{
 }
 
 .on {
-    left:21px;
+    left: 21px;
+}
+
+.line-through {
+    text-decoration: line-through;
 }
 
 
 /* color buttons style */
 
-.green { 
-    background-color:#33cc33;
+.green {
+    background-color: #33cc33;
     display: inline-block;
 }
 
-.green-light { 
-    background-color:#b7f862;
-    -webkit-box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
-    -moz-box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
-    box-shadow: inset -9px -9px 23px 2px rgba(0,0,0,0.23);
+.green-light {
+    background-color: #b7f862;
+    -webkit-box-shadow: inset -9px -9px 23px 2px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: inset -9px -9px 23px 2px rgba(0, 0, 0, 0.23);
+    box-shadow: inset -9px -9px 23px 2px rgba(0, 0, 0, 0.23);
 }
 
-.red { 
+.red {
     background-color: #cd3232;
     display: inline-block;
 }
 
 .red-light {
     background-color: #f34e4e;
-    -webkit-box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
-    -moz-box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
-    box-shadow: inset 9px -9px 23px 2px rgba(0,0,0,0.23);
+    -webkit-box-shadow: inset 9px -9px 23px 2px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: inset 9px -9px 23px 2px rgba(0, 0, 0, 0.23);
+    box-shadow: inset 9px -9px 23px 2px rgba(0, 0, 0, 0.23);
 }
 
-.yellow { 
-    background-color:  #cccc00;
+.yellow {
+    background-color: #cccc00;
     display: inline-block;
 }
 
 .yellow-light {
-    background-color:  #f3f34d;
-    -webkit-box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
-    -moz-box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
-    box-shadow: inset -9px 9px 23px 2px rgba(0,0,0,0.23);
+    background-color: #f3f34d;
+    -webkit-box-shadow: inset -9px 9px 23px 2px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: inset -9px 9px 23px 2px rgba(0, 0, 0, 0.23);
+    box-shadow: inset -9px 9px 23px 2px rgba(0, 0, 0, 0.23);
 }
 
-.blue { 
+.blue {
     background-color: #0000e6;
     display: inline-block;
 }
 
-.blue-light { 
+.blue-light {
     background-color: #205bfc;
-    -webkit-box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
-    -moz-box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
-    box-shadow: inset 4px 4px 23px 2px rgba(0,0,0,0.31);
+    -webkit-box-shadow: inset 4px 4px 23px 2px rgba(0, 0, 0, 0.31);
+    -moz-box-shadow: inset 4px 4px 23px 2px rgba(0, 0, 0, 0.31);
+    box-shadow: inset 4px 4px 23px 2px rgba(0, 0, 0, 0.31);
 }
 
-.round-top-left{
+.round-top-left {
     border-top-left-radius: 100%;
 }
 
-.round-top-right{
+.round-top-right {
     border-top-right-radius: 100%;
 }
 
-.round-bottom-left{
+.round-bottom-left {
     border-bottom-left-radius: 100%;
-
 }
 
-.round-bottom-right{
-    border-bottom-right-radius: 100%;  
+.round-bottom-right {
+    border-bottom-right-radius: 100%;
 }
 
 .color-blocks {
     position: relative;
     height: 222px;
     width: 220px;
-    border: 10px solid  #373a3f; 
+    border: 10px solid #373a3f;
 }
+
 
 /* not on hover but on click */
+
 .color-blocks:hover {
     -webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 
-@media screen and (max-width: 500px){
-
+@media screen and (max-width: 500px) {
     .wrapper {
-      top: 40px;
-      
-      -moz-transform: scale(0.5);
-      -ms-transform: scale(0.5);
-      -o-transform: scale(0.5);
-      -webkit-transform: scale(0.5);
-      transform: scale(0.5);
-      
-      -o-transform-origin: 0 0;
-      -ms-transform-origin: 0 0;
-      -webkit-transform-origin: 0 0;
-      -moz-transform-origin: 0 0;
-      transform-origin: 0 0;
-      
-      left: 60%;
-      margin-left: -142px;
+        top: 40px;
+        -moz-transform: scale(0.5);
+        -ms-transform: scale(0.5);
+        -o-transform: scale(0.5);
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        -o-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
+        transform-origin: 0 0;
+        left: 60%;
+        margin-left: -142px;
     }
-
-
-
-  }
+}
