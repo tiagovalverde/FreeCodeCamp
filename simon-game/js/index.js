@@ -128,7 +128,6 @@ async function playSequence() {
 		//I WON!!!!!!
 		counter_txt.innerText = 'WON';
 		var result = await flashCounterLed();
-		//reset game
 		resetGameDesign();
 		resetGameOnject();
 		removeColorsOnClick();
@@ -172,7 +171,6 @@ function removeLightColor() {
 async function onClickColor(color_id) {
 	//check if value on index match user id
 	if (color_id === SIMON_GAME.sequence[SIMON_GAME.user_click_counter]) {
-		//console.log('match');
 		if (SIMON_GAME.user_click_counter === SIMON_GAME.sequence.length - 1) {
 			removeColorsOnClick();
 			SIMON_GAME.user_click_counter = 0;
@@ -183,10 +181,12 @@ async function onClickColor(color_id) {
 	} else {
 		//if no match
 		if (SIMON_GAME.is_strict_mode) {
-			//reset and start sequence over
+			//Loser -> start over
+			counter_txt.innerText = '';
+			var result = await flashCounterLed();
 		} else {
 			//same sequence is played again (strict false)
-			counter_txt.innerText = 'NO';
+			counter_txt.innerText = '💀';
 			var result = await flashCounterLed();
 			SIMON_GAME.user_click_counter = 0;
 			removeColorsOnClick();
