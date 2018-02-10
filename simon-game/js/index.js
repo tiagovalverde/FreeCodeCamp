@@ -6,7 +6,7 @@ SIMON_GAME = {
 	is_off: true,
 	is_playing_sequence: false,
 	is_strict_mode: false,
-	MAX_NUM_SEQUENCE: 10,
+	MAX_NUM_SEQUENCE: 5,
 	colors: ['blue', 'red', 'green', 'yellow'],
 	interrupt: false, //flag var for start new game (promise handler)
 };
@@ -109,20 +109,33 @@ async function replaySequence() {
 }
 
 async function playSequence() {
-	SIMON_GAME.is_playing_sequence = true;
-	SIMON_GAME.counter++;
-	SIMON_GAME.sequence.push(getNextColorRand());
-	counter_txt.innerText = SIMON_GAME.counter;
-	console.log(SIMON_GAME.sequence);
-	disableStartButton();
-	var result = await displaySequence();
-	enableStartButton();
-	//player turn
-	SIMON_GAME.is_playing_sequence = false;
-	if (result === 'interrupted') {
-		return;
+	if (SIMON_GAME.sequence.length < SIMON_GAME.MAX_NUM_SEQUENCE) {
+		SIMON_GAME.is_playing_sequence = true;
+		SIMON_GAME.counter++;
+		SIMON_GAME.sequence.push(getNextColorRand());
+		counter_txt.innerText = SIMON_GAME.counter;
+		console.log(SIMON_GAME.sequence);
+		disableStartButton();
+		var result = await displaySequence();
+		enableStartButton();
+		//player turn
+		SIMON_GAME.is_playing_sequence = false;
+		if (result === 'interrupted') {
+			return;
+		}
+		setupColorsOnClick();
+	} else {
+		//I WON!!!!!!
+		counter_txt.innerText = 'WON';
+		var result = await flashCounterLed();
+		//reset game
+		resetGameDesign();
+		resetGameOnject();
+		removeColorsOnClick();
 	}
-	setupColorsOnClick();
+
+
+
 }
 
 function setupColorsOnClick() {
