@@ -176,10 +176,14 @@ async function onClickColor(color_id) {
 		//if no match
 		if (SIMON_GAME.is_strict_mode) {
 			//Loser -> start over
-			counter_txt.innerText = '';
+			counter_txt.innerText = 'XX';
 			var result = await flashCounterLed();
+			resetGameOnject(); //if is in progress
+			removeColorsOnClick();
+			resetGameDesign();
+			playSequence();
 		} else {
-			//same sequence is played again (strict false)
+			//same sequence is played again
 			removeColorsOnClick();
 			counter_txt.innerText = 'X';
 			var result = await flashCounterLed();
