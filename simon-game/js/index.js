@@ -102,7 +102,6 @@ async function replaySequence() {
 	//enable start button to be Restart
 	enableStartButton();
 	SIMON_GAME.is_playing_sequence = false;
-	setupColorsOnClick();
 }
 
 async function playSequence() {
@@ -112,6 +111,7 @@ async function playSequence() {
 		SIMON_GAME.sequence.push(getNextColorRand());
 		counter_txt.innerText = SIMON_GAME.counter;
 		console.log(SIMON_GAME.sequence);
+		removeColorsOnClick();
 		disableStartButton();
 		var result = await displaySequence();
 		enableStartButton();
@@ -180,12 +180,15 @@ async function onClickColor(color_id) {
 			var result = await flashCounterLed();
 		} else {
 			//same sequence is played again (strict false)
+			removeColorsOnClick();
 			counter_txt.innerText = 'X';
 			var result = await flashCounterLed();
 			SIMON_GAME.user_click_counter = 0;
-			removeColorsOnClick();
-			replaySequence();
+
+			console.log('DISABLEDDDDDDD');
+			await replaySequence();
 			setupColorsOnClick();
+			console.log('ENABLEDDDDDDDDDD');
 		}
 	}
 }
