@@ -20,7 +20,6 @@ var counter_txt = document.getElementById('counter');
 //btn labels
 var labels = document.querySelectorAll('.control-desc');
 var start_label = labels[0];
-console.log(start_label.innerText);
 
 power_switch_btn.onclick = function () {
 	onPowerSwitchClick();
@@ -52,7 +51,6 @@ function enableStrictButton() {
 }
 
 function enableStartButton() {
-	console.log(SIMON_GAME.sequence.length);
 	if (SIMON_GAME.sequence.length !== 0) {
 		start_label.innerHTML = 'RESTART';
 	} else {
@@ -85,10 +83,8 @@ async function onStartClick() {
 		removeColorsOnClick();
 		resetGameDesign();
 		start_label.innerHTML = 'START';
-		console.log('restart game');
 	}
 	var result = await flashCounterLed();
-	console.log(result);
 	playSequence();
 }
 
@@ -97,7 +93,6 @@ async function replaySequence() {
 	disableStartButton();
 	counter_txt.innerText = SIMON_GAME.counter;
 	SIMON_GAME.is_playing_sequence = true;
-
 	var result = await displaySequence();
 	//enable start button to be Restart
 	enableStartButton();
@@ -110,7 +105,6 @@ async function playSequence() {
 		SIMON_GAME.counter++;
 		SIMON_GAME.sequence.push(getNextColorRand());
 		counter_txt.innerText = SIMON_GAME.counter;
-		console.log(SIMON_GAME.sequence);
 		removeColorsOnClick();
 		disableStartButton();
 		var result = await displaySequence();
@@ -119,7 +113,7 @@ async function playSequence() {
 		SIMON_GAME.is_playing_sequence = false;
 		setupColorsOnClick();
 	} else {
-		//I WON!!!!!!
+		//wind condition
 		counter_txt.innerText = 'WON';
 		var result = await flashCounterLed();
 		resetGameDesign();
@@ -188,11 +182,8 @@ async function onClickColor(color_id) {
 			counter_txt.innerText = 'X';
 			var result = await flashCounterLed();
 			SIMON_GAME.user_click_counter = 0;
-
-			console.log('DISABLEDDDDDDD');
 			await replaySequence();
 			setupColorsOnClick();
-			console.log('ENABLEDDDDDDDDDD');
 		}
 	}
 }
