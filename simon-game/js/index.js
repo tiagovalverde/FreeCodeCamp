@@ -8,7 +8,7 @@ SIMON_GAME = {
 	is_strict_mode: false,
 	MAX_NUM_SEQUENCE: 5,
 	colors: ['blue', 'red', 'green', 'yellow'],
-	interrupt: false, //flag var for start new game (promise handler)
+
 };
 
 //controls events
@@ -81,14 +81,14 @@ function disableStartButton() {
 async function onStartClick() {
 	//check if game is starting
 	if (SIMON_GAME.sequence.length !== 0) {
-		SIMON_GAME.interrupt = true;
 		resetGameOnject(); //if is in progress
 		removeColorsOnClick();
 		resetGameDesign();
 		start_label.innerHTML = 'START';
+		console.log('restart game');
 	}
 	var result = await flashCounterLed();
-	//console.log(result);
+	console.log(result);
 	playSequence();
 }
 
@@ -102,9 +102,6 @@ async function replaySequence() {
 	//enable start button to be Restart
 	enableStartButton();
 	SIMON_GAME.is_playing_sequence = false;
-	if (result === 'interrupted') {
-		return;
-	}
 	setupColorsOnClick();
 }
 
@@ -120,9 +117,6 @@ async function playSequence() {
 		enableStartButton();
 		//player turn
 		SIMON_GAME.is_playing_sequence = false;
-		if (result === 'interrupted') {
-			return;
-		}
 		setupColorsOnClick();
 	} else {
 		//I WON!!!!!!
@@ -186,18 +180,18 @@ async function onClickColor(color_id) {
 			var result = await flashCounterLed();
 		} else {
 			//same sequence is played again (strict false)
-			counter_txt.innerText = '💀';
+			counter_txt.innerText = 'X';
 			var result = await flashCounterLed();
 			SIMON_GAME.user_click_counter = 0;
 			removeColorsOnClick();
 			replaySequence();
+			setupColorsOnClick();
 		}
 	}
 }
 
 function displaySequence() {
 	SIMON_GAME.is_playing_sequence = true;
-
 	return new Promise(resolve => {
 		let in_out = 0;
 		SIMON_GAME.sequence.map(function (color, index) {
@@ -211,16 +205,6 @@ function displaySequence() {
 					resolve('sequence done');
 				}
 			}, 1000 + index * 1000);
-
-			//interrupted by user
-			if (SIMON_GAME.interrupt) {
-				clearTimeout(lighter);
-				clearTimeout(darker);
-				resolve('interrupted');
-			} else {
-				lighter;
-				darker;
-			}
 		});
 	});
 }
@@ -275,7 +259,6 @@ function resetGameOnject() {
 	SIMON_GAME.is_off = true;
 	SIMON_GAME.is_playing_sequence = false;
 	SIMON_GAME.is_strict_mode = false;
-	MAX_NUM_SEQUENCE = 20;
 }
 
 function resetGameDesign() {
