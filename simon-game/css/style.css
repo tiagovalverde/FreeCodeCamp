@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Ultra');
 body {
-    background-color: #FBBF64;
+    background-color: #e6edf1;
 }
 
 .wrapper {
@@ -15,14 +15,12 @@ body {
     top: 10vh;
 }
 
-
 /*
 .sub-wrapper {
     position: relative;
     top: 12px;
 }
 */
-
 
 /* center of the game */
 
@@ -44,7 +42,6 @@ body {
     background-color: #ECE7EE;
     border: 12px solid #373a3f;
 }
-
 
 /* CONTROLS */
 
@@ -132,7 +129,6 @@ body {
     background-color: #803030;
 }
 
-
 /* turn on or off style */
 
 .controls.power-on-off {
@@ -168,7 +164,6 @@ body {
     text-decoration: line-through;
 }
 
-
 /* color buttons style */
 
 .green {
@@ -177,31 +172,31 @@ body {
 }
 
 .green-light {
-    background-color: #b7f862;
+    background-color: #52FD52;
     -webkit-box-shadow: inset -9px -9px 23px 2px rgba(0, 0, 0, 0.23);
     -moz-box-shadow: inset -9px -9px 23px 2px rgba(0, 0, 0, 0.23);
     box-shadow: inset -9px -9px 23px 2px rgba(0, 0, 0, 0.23);
 }
 
 .red {
-    background-color: #cd3232;
+    background-color: #af2828;
     display: inline-block;
 }
 
 .red-light {
-    background-color: #f34e4e;
+    background-color: #f15252;
     -webkit-box-shadow: inset 9px -9px 23px 2px rgba(0, 0, 0, 0.23);
     -moz-box-shadow: inset 9px -9px 23px 2px rgba(0, 0, 0, 0.23);
     box-shadow: inset 9px -9px 23px 2px rgba(0, 0, 0, 0.23);
 }
 
 .yellow {
-    background-color: #cccc00;
+    background-color: #b9b907;
     display: inline-block;
 }
 
 .yellow-light {
-    background-color: #f3f34d;
+    background-color: #ffff31;
     -webkit-box-shadow: inset -9px 9px 23px 2px rgba(0, 0, 0, 0.23);
     -moz-box-shadow: inset -9px 9px 23px 2px rgba(0, 0, 0, 0.23);
     box-shadow: inset -9px 9px 23px 2px rgba(0, 0, 0, 0.23);
@@ -241,7 +236,6 @@ body {
     width: 220px;
     border: 10px solid #373a3f;
 }
-
 
 /* not on hover but on click */
 
