@@ -11,6 +11,15 @@ SIMON_GAME = {
 
 };
 
+SIMON_AUDIO = {
+	red: 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3',
+	green: 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3',
+	blue: 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3',
+	yellow: 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3',
+	win: '',
+	lose: ''
+}
+
 //controls events
 var power_switch_btn = document.getElementById('power-switch');
 var start_btn = document.getElementById('start');
@@ -77,6 +86,7 @@ function disableStartButton() {
 }
 
 async function onStartClick() {
+
 	//check if game is starting
 	if (SIMON_GAME.sequence.length !== 0) {
 		resetGameOnject(); //if is in progress
@@ -134,6 +144,7 @@ function setupColorsOnClick() {
 		};
 
 		color.addEventListener('mousedown', addLightColor);
+		color.addEventListener('mousedown', playAudio);
 		color.addEventListener('mouseup', removeLightColor);
 	});
 }
@@ -261,4 +272,16 @@ function resetGameOnject() {
 
 function resetGameDesign() {
 	counter_txt.innerText = '--';
+}
+
+/* Audio tests */
+
+
+function playAudio(color) {
+	const path = SIMON_AUDIO[this.id];
+	var audioElement = document.createElement('audio');
+	audioElement.loop = true;
+	audioElement.setAttribute('src', path);
+	audioElement.play();
+
 }
