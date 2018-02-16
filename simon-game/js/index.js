@@ -12,10 +12,10 @@ SIMON_GAME = {
 };
 
 SIMON_AUDIO = {
-	red: 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3',
-	green: 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3',
-	blue: 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3',
-	yellow: 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3',
+	red: 'res/simonSound1.mp3',
+	green: 'res/simonSound2.mp3',
+	blue: 'res/simonSound3.mp3',
+	yellow: 'res/simonSound4.mp3',
 	win: '',
 	lose: ''
 }
@@ -144,7 +144,6 @@ function setupColorsOnClick() {
 		};
 
 		color.addEventListener('mousedown', addLightColor);
-		color.addEventListener('mousedown', playAudio);
 		color.addEventListener('mouseup', removeLightColor);
 	});
 }
@@ -174,8 +173,11 @@ async function onClickColor(color_id) {
 			removeColorsOnClick();
 			SIMON_GAME.user_click_counter = 0;
 			playSequence();
+			//playHowler(color_id);
 		} else {
 			SIMON_GAME.user_click_counter++;
+			//playHowler(color_id);
+
 		}
 	} else {
 		//if no match
@@ -205,6 +207,7 @@ function displaySequence() {
 		let in_out = 0;
 		SIMON_GAME.sequence.map(function (color, index) {
 			var lighter = setTimeout(() => {
+				playHowler(color);
 				document.getElementById(color).classList.add(color + '-light');
 			}, 500 + index * 1000);
 
@@ -275,13 +278,13 @@ function resetGameDesign() {
 }
 
 /* Audio tests */
+function playHowler(color_id) {
+	const audio_path = SIMON_AUDIO[color_id];
+	console.log(audio_path);
+	var sound = new Howl({
+		src: [audio_path]
+	});
 
-
-function playAudio(color) {
-	const path = SIMON_AUDIO[this.id];
-	var audioElement = document.createElement('audio');
-	audioElement.loop = true;
-	audioElement.setAttribute('src', path);
-	audioElement.play();
-
+	var x = sound.play();
+	sound.rate(0.5, x);
 }
