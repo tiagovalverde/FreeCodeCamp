@@ -16,8 +16,8 @@ SIMON_AUDIO = {
 	green: 'res/simonSound2.mp3',
 	blue: 'res/simonSound3.mp3',
 	yellow: 'res/simonSound4.mp3',
-	win: '',
-	lose: ''
+	win: 'res/simonSoundWin.mp3',
+	lose: 'res/simonSoundLose.mp3'
 }
 
 //controls events
@@ -167,19 +167,22 @@ function removeLightColor() {
 }
 
 async function onClickColor(color_id) {
-	//check if value on index match user id
+	//check if user guessed the color
 	if (color_id === SIMON_GAME.sequence[SIMON_GAME.user_click_counter]) {
+		//check if user guessed the entire sequence
 		if (SIMON_GAME.user_click_counter === SIMON_GAME.sequence.length - 1) {
+			playHowler(color_id);
 			removeColorsOnClick();
 			SIMON_GAME.user_click_counter = 0;
 			playSequence();
-			//playHowler(color_id);
+
 		} else {
+			playHowler(color_id); //guessed one but sequence not completed
 			SIMON_GAME.user_click_counter++;
-			//playHowler(color_id);
 
 		}
 	} else {
+		playHowler('lose');
 		//if no match
 		if (SIMON_GAME.is_strict_mode) {
 			//Loser -> start over
