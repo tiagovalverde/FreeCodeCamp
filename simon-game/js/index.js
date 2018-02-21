@@ -6,7 +6,7 @@ SIMON_GAME = {
 	is_off: true,
 	is_playing_sequence: false,
 	is_strict_mode: false,
-	MAX_NUM_SEQUENCE: 3,
+	MAX_NUM_SEQUENCE: 20,
 	colors: ['blue', 'red', 'green', 'yellow'],
 };
 
