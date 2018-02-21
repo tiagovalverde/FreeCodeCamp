@@ -15,12 +15,20 @@ body {
     top: 10vh;
 }
 
+.footer {
+    position: relative;
+    text-align: center;
+    margin-top: 110px;
+}
+
+
 /*
 .sub-wrapper {
     position: relative;
     top: 12px;
 }
 */
+
 
 /* center of the game */
 
@@ -42,6 +50,7 @@ body {
     background-color: #ECE7EE;
     border: 12px solid #373a3f;
 }
+
 
 /* CONTROLS */
 
@@ -129,6 +138,7 @@ body {
     background-color: #803030;
 }
 
+
 /* turn on or off style */
 
 .controls.power-on-off {
@@ -163,6 +173,7 @@ body {
 .line-through {
     text-decoration: line-through;
 }
+
 
 /* color buttons style */
 
@@ -237,12 +248,23 @@ body {
     border: 10px solid #373a3f;
 }
 
+
 /* not on hover but on click */
 
 .color-blocks:hover {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+}
+
+.footer p,
+a {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.footer a {
+    font-weight: 600;
 }
 
 @media screen and (max-width: 500px) {
@@ -260,5 +282,8 @@ body {
         transform-origin: 0 0;
         left: 60%;
         margin-left: -142px;
+    }
+    .footer {
+        margin-top: 55px;
     }
 }
