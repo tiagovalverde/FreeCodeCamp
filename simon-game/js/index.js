@@ -125,7 +125,8 @@ async function playSequence() {
 	} else {
 		//wind condition
 		counter_txt.innerText = 'WON';
-		var result = await flashCounterLed();
+		flashCounterLed();
+		var playHowlerResponse = await playHowelerWin('win');
 		resetGameDesign();
 		resetGameOnject();
 		removeColorsOnClick();
@@ -282,6 +283,7 @@ function resetGameDesign() {
 
 /* Audio tests */
 function playHowler(color_id) {
+
 	const audio_path = SIMON_AUDIO[color_id];
 	console.log(audio_path);
 	var sound = new Howl({
@@ -290,4 +292,20 @@ function playHowler(color_id) {
 
 	var x = sound.play();
 	sound.rate(0.5, x);
+}
+
+function playHowelerWin(audio_key) {
+	return new Promise(resolve => {
+		setTimeout(() => {
+			const audio_path = SIMON_AUDIO[audio_key];
+			var sound = new Howl({
+				src: [audio_path],
+			});
+			var x = sound.play();
+			//sound.rate(0.5, x);
+			resolve('audio win  done');
+		}, 2000);
+
+	});
+
 }
