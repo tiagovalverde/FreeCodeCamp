@@ -1,4 +1,4 @@
-//Game object
+//Game properties
 SIMON_GAME = {
 	counter: 0,
 	sequence: [],
@@ -6,11 +6,11 @@ SIMON_GAME = {
 	is_off: true,
 	is_playing_sequence: false,
 	is_strict_mode: false,
-	MAX_NUM_SEQUENCE: 5,
+	MAX_NUM_SEQUENCE: 3,
 	colors: ['blue', 'red', 'green', 'yellow'],
-
 };
 
+//audio assets
 SIMON_AUDIO = {
 	red: 'res/simonSound1.mp3',
 	green: 'res/simonSound2.mp3',
@@ -43,6 +43,7 @@ function onPowerSwitchClick() {
 		enableStartButton();
 		enableStrictButton();
 	} else {
+		SIMON_GAME.is_off = true;
 		power_switch_btn.classList.remove('on');
 		counter_txt.classList.add('led-off');
 		strict_indicator.classList.remove('full-red');
@@ -86,8 +87,6 @@ function disableStartButton() {
 }
 
 async function onStartClick() {
-
-	//check if game is starting
 	if (SIMON_GAME.sequence.length !== 0) {
 		resetGameOnject(); //if is in progress
 		removeColorsOnClick();
@@ -99,12 +98,10 @@ async function onStartClick() {
 }
 
 async function replaySequence() {
-	//disable start button
 	disableStartButton();
 	counter_txt.innerText = SIMON_GAME.counter;
 	SIMON_GAME.is_playing_sequence = true;
 	var result = await displaySequence();
-	//enable start button to be Restart
 	enableStartButton();
 	SIMON_GAME.is_playing_sequence = false;
 }
@@ -126,14 +123,11 @@ async function playSequence() {
 		//wind condition
 		counter_txt.innerText = 'WON';
 		flashCounterLed();
-		var playHowlerResponse = await playHowelerWin('win');
+		await playHowlerWin('win');
 		resetGameDesign();
 		resetGameOnject();
 		removeColorsOnClick();
 	}
-
-
-
 }
 
 function setupColorsOnClick() {
@@ -143,7 +137,6 @@ function setupColorsOnClick() {
 		color.onclick = function () {
 			onClickColor(color.id);
 		};
-
 		color.addEventListener('mousedown', addLightColor);
 		color.addEventListener('mouseup', removeLightColor);
 	});
@@ -175,12 +168,11 @@ async function onClickColor(color_id) {
 			playHowler(color_id);
 			removeColorsOnClick();
 			SIMON_GAME.user_click_counter = 0;
+			await setTimerBetweenSequences();
 			playSequence();
-
 		} else {
 			playHowler(color_id); //guessed one but sequence not completed
 			SIMON_GAME.user_click_counter++;
-
 		}
 	} else {
 		playHowler('lose');
@@ -218,7 +210,7 @@ function displaySequence() {
 			var darker = setTimeout(() => {
 				document.getElementById(color).classList.remove(color + '-light');
 				if (index === SIMON_GAME.sequence.length - 1) {
-					resolve('sequence done');
+					resolve();
 				}
 			}, 1000 + index * 1000);
 		});
@@ -250,62 +242,62 @@ function flashCounterLed() {
 		counter_txt.classList.remove('led-off');
 	}
 
-	//array with flashing sequence
 	let flashingArray = [addLed, removeLed, addLed, removeLed];
 
-	//switch between add and remove functions with timers
-	//javascript does not keep running unitl resolve returned
 	return new Promise(resolve => {
 		flashingArray.map(function (fun, index) {
 			setTimeout(() => {
 				fun();
 
 				if (index === 3) {
-					resolve('flashing done');
+					resolve();
 				}
 			}, 500 + index * 500);
 		});
 	});
 }
 
+/* Audio methods */
+function playHowler(color_id) {
+	const audio_path = SIMON_AUDIO[color_id];
+	var sound = new Howl({
+		src: [audio_path],
+		rate: 0.5
+	});
+	sound.play();
+}
+
+function playHowlerWin(audio_key) {
+	return new Promise(resolve => {
+		setTimeout(() => {
+			const audio_path = SIMON_AUDIO[audio_key];
+			var sound = new Howl({
+				src: [audio_path],
+				volume: 0.3,
+			});
+			var x = sound.play();
+			resolve();
+		}, 2000);
+	});
+}
+
+function setTimerBetweenSequences() {
+	return new Promise(resolve => {
+		setTimeout(() => {
+			resolve();
+		}, 1000);
+	});
+}
+
+/* Reset functions */
 function resetGameOnject() {
 	SIMON_GAME.counter = 0;
 	SIMON_GAME.sequence = [];
 	SIMON_GAME.user_click_counter = 0;
-	SIMON_GAME.is_off = true;
 	SIMON_GAME.is_playing_sequence = false;
 	SIMON_GAME.is_strict_mode = false;
 }
 
 function resetGameDesign() {
 	counter_txt.innerText = '--';
-}
-
-/* Audio tests */
-function playHowler(color_id) {
-
-	const audio_path = SIMON_AUDIO[color_id];
-	console.log(audio_path);
-	var sound = new Howl({
-		src: [audio_path]
-	});
-
-	var x = sound.play();
-	sound.rate(0.5, x);
-}
-
-function playHowelerWin(audio_key) {
-	return new Promise(resolve => {
-		setTimeout(() => {
-			const audio_path = SIMON_AUDIO[audio_key];
-			var sound = new Howl({
-				src: [audio_path],
-			});
-			var x = sound.play();
-			//sound.rate(0.5, x);
-			resolve('audio win  done');
-		}, 2000);
-
-	});
-
 }
