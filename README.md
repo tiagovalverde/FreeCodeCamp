@@ -1,2 +1,2 @@
 # FreeCodeCamp
-Repository dedicated to my FreeCodeCam challenges and Projects
+Repository dedicated to my FreeCodeCamp Front-End challenges and Projects
